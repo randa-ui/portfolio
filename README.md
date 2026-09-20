@@ -54,14 +54,20 @@ Netlify Forms, Basin or Getform work the same way if you prefer them.
 
 ## Publishing
 
-Any of these are free and take a few minutes:
+The site is live on GitHub Pages:
 
-- **Netlify** — drag the folder onto https://app.netlify.com/drop.
-- **Vercel** — `npx vercel` in this folder.
-- **GitHub Pages** — push the folder to a repo, enable Pages in Settings.
-- **Cloudflare Pages** — connect the repo or upload the folder.
+- **URL:** https://randa-ui.github.io/portfolio/
+- **Repo:** https://github.com/randa-ui/portfolio
 
-Then point your domain at it in the host's dashboard.
+To publish changes, commit and push from this folder. GitHub rebuilds the site in about a minute:
+
+```bash
+git add -A && git commit -m "Update site" && git push
+```
+
+Files listed in `.gitignore` are never uploaded. The 217 MB master reel (`Showreel25.mp4`) is excluded on purpose: GitHub refuses files over 100 MB, and the site plays the web-sized `showreel-hero.mp4` instead. Keep future masters out of `assets` or add them to `.gitignore`.
+
+**Custom domain:** in the repo, Settings → Pages → Custom domain, enter your domain, then add a CNAME record at your registrar pointing to `randa-ui.github.io`.
 
 ## The animations
 
