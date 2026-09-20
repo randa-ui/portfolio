@@ -1,0 +1,6 @@
+# OS noise
+.DS_Store
+
+# Master renders: too big for GitHub (100 MB limit) and not used by the site.
+# The site plays the web-sized copies (e.g. showreel-hero.mp4).
+assets/videos/Showreel25.mp4
