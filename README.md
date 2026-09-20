@@ -56,8 +56,9 @@ Netlify Forms, Basin or Getform work the same way if you prefer them.
 
 The site is live on GitHub Pages:
 
-- **URL:** https://randa-ui.github.io/portfolio/
+- **URL:** https://randaskal.com (www.randaskal.com redirects here; so does randa-ui.github.io/portfolio)
 - **Repo:** https://github.com/randa-ui/portfolio
+- **Domain:** bought at Wix; its DNS points at GitHub (four A records → 185.199.108–111.153, `www` CNAME → randa-ui.github.io). The `CNAME` file in this folder tells GitHub which domain to serve — don't delete it.
 
 To publish changes, commit and push from this folder. GitHub rebuilds the site in about a minute:
 
@@ -67,7 +68,7 @@ git add -A && git commit -m "Update site" && git push
 
 Files listed in `.gitignore` are never uploaded. The 217 MB master reel (`Showreel25.mp4`) is excluded on purpose: GitHub refuses files over 100 MB, and the site plays the web-sized `showreel-hero.mp4` instead. Keep future masters out of `assets` or add them to `.gitignore`.
 
-**Custom domain:** in the repo, Settings → Pages → Custom domain, enter your domain, then add a CNAME record at your registrar pointing to `randa-ui.github.io`.
+**Note for the monday.com office network:** the corporate proxy caches DNS, so the domain may show an old Wix page there for a while after DNS changes. Check from a phone on mobile data if in doubt.
 
 ## The animations
 
