@@ -1015,19 +1015,6 @@ video {
   width: 1px;
 }
 
-.layer-name {
-  position: absolute;
-  left: 0;
-  top: -22px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-  background: var(--bg);
-  padding: 2px 6px;
-  border: 1px solid var(--ink);
-}
-
 /* ---- Send → Render button swap ---- */
 .btn-swap {
   display: grid;
