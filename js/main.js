@@ -114,7 +114,7 @@
           </div>
           <div class="card-caption">
             <h2 class="card-title">${p.title}</h2>
-            <span class="card-client">${p.client}</span>
+            ${p.client ? `<span class="card-client">${p.client}</span>` : ""}
           </div>
         </a>`
       )
@@ -203,9 +203,9 @@
       <header class="project-head">
         <h1 class="project-title">${p.title}</h1>
         <dl class="project-meta">
-          <dt>Client</dt><dd>${p.client}</dd>
-          <dt>Role</dt><dd>${p.role || ""}</dd>
-          <dt>Year</dt><dd>${p.year || ""}</dd>
+          ${p.client ? `<dt>Client</dt><dd>${p.client}</dd>` : ""}
+          ${p.role ? `<dt>Role</dt><dd>${p.role}</dd>` : ""}
+          ${p.year ? `<dt>Year</dt><dd>${p.year}</dd>` : ""}
         </dl>
       </header>
 

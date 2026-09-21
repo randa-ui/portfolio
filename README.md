@@ -37,6 +37,33 @@ then open http://localhost:8765. (Opening `index.html` directly from Finder also
 
 That's it. The project page, the previous/next links and the page title are generated from that entry.
 
+### Current projects and their file names
+
+Every project already has an entry and placeholder files. Drop your real exports in with these exact names and nothing else needs editing:
+
+| # | Title | Tile still (`assets/thumbs/`) | Hover loop (`assets/videos/`) | Main video (`assets/videos/`) |
+|---|---|---|---|---|
+| 01 | Showreel 26 | `showreel.jpg` (see note in projects.js) | `showreel-preview.mp4` | `showreel-hero.mp4` ✓ |
+| 02 | Abandoned Office | `abandoned-office.jpg` | `abandoned-office-preview.mp4` | `abandoned-office-hero.mp4` |
+| 03 | Your CRM is old | `your-crm-is-old.jpg` | `your-crm-is-old-preview.mp4` | `your-crm-is-old-hero.mp4` |
+| 04 | Truth Bomb | `truth-bomb.jpg` | `truth-bomb-preview.mp4` | `truth-bomb-hero.mp4` |
+| 05 | Wordtune | `wordtune.jpg` | `wordtune-preview.mp4` | `wordtune-hero.mp4` |
+| 06 | The biggest deal | `the-biggest-deal.jpg` | `the-biggest-deal-preview.mp4` | `the-biggest-deal-hero.mp4` |
+| 07 | I'm an actor | `im-an-actor.jpg` | `im-an-actor-preview.mp4` | `im-an-actor-hero.mp4` |
+| 08 | monday CRM Agents | `monday-crm-agents.jpg` | `monday-crm-agents-preview.mp4` | `monday-crm-agents-hero.mp4` |
+| 09 | S.A.L.T | `salt.jpg` | `salt-preview.mp4` | `salt-hero.mp4` |
+| 10 | monday Service | `monday-service.jpg` | `monday-service-preview.mp4` | `monday-service-hero.mp4` |
+| 11 | monday CRM demo | `monday-crm-demo.jpg` | `monday-crm-demo-preview.mp4` | `monday-crm-demo-hero.mp4` |
+| 12 | Fortis | `fortis.jpg` | `fortis-preview.mp4` | `fortis-hero.mp4` |
+| 13 | The worst about IT | `the-worst-about-it.jpg` | `the-worst-about-it-preview.mp4` | `the-worst-about-it-hero.mp4` |
+| 14 | The president | `the-president.jpg` | `the-president-preview.mp4` | `the-president-hero.mp4` |
+| 15 | CRM Nightmare | `crm-nightmare.jpg` | `crm-nightmare-preview.mp4` | `crm-nightmare-hero.mp4` |
+| 16 | Art of work | `art-of-work.jpg` | `art-of-work-preview.mp4` | `art-of-work-hero.mp4` |
+
+Each project also has a `-hero.jpg` poster in `assets/thumbs/` shown before the main video loads. Main videos on Vimeo/YouTube instead? Replace the `hero` line with `{ vimeo: "ID" }`.
+
+Empty `client`, `role` and `year` fields are hidden automatically, so fill them in as you go.
+
 ## Your details
 
 Edit the `site` object at the top of `js/projects.js`: name, tagline, email, location, Instagram and LinkedIn URLs.
