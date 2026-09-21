@@ -103,7 +103,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/wordtune.jpg",
     preview: "",
-    hero: { video: "assets/videos/wordtune-hero.mp4", poster: "assets/thumbs/wordtune-hero.jpg" },
+    hero: { vimeo: "790074777" },
     description: ["Case study coming soon."],
     credits: [],
     gallery: [],
