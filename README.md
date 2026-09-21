@@ -3,16 +3,16 @@
 A static portfolio: no build step, no framework, no CMS. Open `index.html` or drop the folder on any static host.
 
 ```
-index.html      Home: intro + 4:3 grid of hover-play videos
+index.html      Home: intro + 4:3 grid of project stills
 project.html    One template for every project (project.html?p=<slug>)
 about.html      About page
 contact.html    Contact page with a small form + Instagram / LinkedIn
 js/projects.js  ← ALL your content lives here (name, links, projects)
-js/main.js      Renders the grid / project pages, hover-play + scrub, form
+js/main.js      Renders the grid / project pages, form
 js/fx.js        The fun layer: keyframe cursor, text entrances, render bar, layer box
 css/style.css   Styles (colours + fonts are tokens at the top; FX styles at the bottom)
 assets/         thumbs/ (posters), videos/ (previews + heroes), gifs/ (project extras)
-tools/          make-placeholders.sh — the gradient dummies; delete once you have real footage
+tools/          ingest-video.sh (master film → web encode + poster + tile still), make-placeholders.sh (gradient dummies)
 ```
 
 ## Preview locally
@@ -27,13 +27,15 @@ then open http://localhost:8765. (Opening `index.html` directly from Finder also
 
 ## Adding a project
 
-1. Export from After Effects / Premiere:
-   - **Preview loop** — 4:3, e.g. 1200×900, muted, 3–6 s, H.264 MP4, aim for < 1.5 MB. Plays on hover in the grid.
-   - **Poster** — a JPG of the first frame of the preview (shown before the video loads).
-   - **Hero** — the full piece. Either upload to Vimeo / YouTube and use the ID, or export a 1920×1080 MP4 and put it in `assets/videos/`.
-   - **Extras** — GIFs, short MP4 loops or stills for the gallery. MP4 is much lighter than GIF for the same clip; both work.
-2. Put the files in `assets/thumbs`, `assets/videos`, `assets/gifs`.
-3. Add an entry to the `projects` array in `js/projects.js`. The comment block at the top of that file documents every field. The grid order is the array order.
+The quick way: give Claude the master film and the project name. The script it uses is here too:
+
+```bash
+tools/ingest-video.sh truth-bomb "/path/to/04_Truth Bomb.mp4" 5
+```
+
+That writes a 1080p web encode (`assets/videos/truth-bomb-hero.mp4`, ~10–25 MB), a poster frame, and a 4:3 tile still cut from the film at 5 seconds. To use your own still instead, save it as `assets/thumbs/truth-bomb.jpg` (1200×900) and create an empty `assets/thumbs/truth-bomb.keep` so the script leaves it alone.
+
+Then add or edit the project's entry in `js/projects.js`. The comment block at the top documents every field. The grid order is the array order.
 
 That's it. The project page, the previous/next links and the page title are generated from that entry.
 
@@ -41,24 +43,24 @@ That's it. The project page, the previous/next links and the page title are gene
 
 Every project already has an entry and placeholder files. Drop your real exports in with these exact names and nothing else needs editing:
 
-| # | Title | Tile still (`assets/thumbs/`) | Hover loop (`assets/videos/`) | Main video (`assets/videos/`) |
-|---|---|---|---|---|
-| 01 | Showreel 26 | `showreel.jpg` (see note in projects.js) | `showreel-preview.mp4` | `showreel-hero.mp4` ✓ |
-| 02 | Abandoned Office | `abandoned-office.jpg` | `abandoned-office-preview.mp4` | `abandoned-office-hero.mp4` |
-| 03 | Your CRM is old | `your-crm-is-old.jpg` | `your-crm-is-old-preview.mp4` | `your-crm-is-old-hero.mp4` |
-| 04 | Truth Bomb | `truth-bomb.jpg` | `truth-bomb-preview.mp4` | `truth-bomb-hero.mp4` |
-| 05 | Wordtune | `wordtune.jpg` | `wordtune-preview.mp4` | `wordtune-hero.mp4` |
-| 06 | The biggest deal | `the-biggest-deal.jpg` | `the-biggest-deal-preview.mp4` | `the-biggest-deal-hero.mp4` |
-| 07 | I'm an actor | `im-an-actor.jpg` | `im-an-actor-preview.mp4` | `im-an-actor-hero.mp4` |
-| 08 | monday CRM Agents | `monday-crm-agents.jpg` | `monday-crm-agents-preview.mp4` | `monday-crm-agents-hero.mp4` |
-| 09 | S.A.L.T | `salt.jpg` | `salt-preview.mp4` | `salt-hero.mp4` |
-| 10 | monday Service | `monday-service.jpg` | `monday-service-preview.mp4` | `monday-service-hero.mp4` |
-| 11 | monday CRM demo | `monday-crm-demo.jpg` | `monday-crm-demo-preview.mp4` | `monday-crm-demo-hero.mp4` |
-| 12 | Fortis | `fortis.jpg` | `fortis-preview.mp4` | `fortis-hero.mp4` |
-| 13 | The worst about IT | `the-worst-about-it.jpg` | `the-worst-about-it-preview.mp4` | `the-worst-about-it-hero.mp4` |
-| 14 | The president | `the-president.jpg` | `the-president-preview.mp4` | `the-president-hero.mp4` |
-| 15 | CRM Nightmare | `crm-nightmare.jpg` | `crm-nightmare-preview.mp4` | `crm-nightmare-hero.mp4` |
-| 16 | Art of work | `art-of-work.jpg` | `art-of-work-preview.mp4` | `art-of-work-hero.mp4` |
+| # | Title | Tile still (`assets/thumbs/`) | Main video (`assets/videos/`) |
+|---|---|---|---|
+| 01 | Showreel 26 | `showreel.jpg` (see note in projects.js) | `showreel-hero.mp4` ✓ |
+| 02 | Abandoned Office | `abandoned-office.jpg` | `abandoned-office-hero.mp4` |
+| 03 | Your CRM is old | `your-crm-is-old.jpg` | `your-crm-is-old-hero.mp4` |
+| 04 | Truth Bomb | `truth-bomb.jpg` | `truth-bomb-hero.mp4` |
+| 05 | Wordtune | `wordtune.jpg` | `wordtune-hero.mp4` |
+| 06 | The biggest deal | `the-biggest-deal.jpg` | `the-biggest-deal-hero.mp4` |
+| 07 | I'm an actor | `im-an-actor.jpg` | `im-an-actor-hero.mp4` |
+| 08 | monday CRM Agents | `monday-crm-agents.jpg` | `monday-crm-agents-hero.mp4` |
+| 09 | S.A.L.T | `salt.jpg` | `salt-hero.mp4` |
+| 10 | monday Service | `monday-service.jpg` | `monday-service-hero.mp4` |
+| 11 | monday CRM demo | `monday-crm-demo.jpg` | `monday-crm-demo-hero.mp4` |
+| 12 | Fortis | `fortis.jpg` | `fortis-hero.mp4` |
+| 13 | The worst about IT | `the-worst-about-it.jpg` | `the-worst-about-it-hero.mp4` |
+| 14 | The president | `the-president.jpg` | `the-president-hero.mp4` |
+| 15 | CRM Nightmare | `crm-nightmare.jpg` | `crm-nightmare-hero.mp4` |
+| 16 | Art of work | `art-of-work.jpg` | `art-of-work-hero.mp4` |
 
 Each project also has a `-hero.jpg` poster in `assets/thumbs/` shown before the main video loads. Main videos on Vimeo/YouTube instead? Replace the `hero` line with `{ vimeo: "ID" }`.
 
@@ -101,7 +103,6 @@ Files listed in `.gitignore` are never uploaded. The 217 MB master reel (`Showre
 
 The concept: the site behaves like an After Effects comp. All of it lives in `js/fx.js` plus the "FX" block at the end of `css/style.css`, and every effect turns itself off when the visitor has "reduce motion" enabled.
 
-- **Hover scrub** on the grid. Moving across a thumbnail scrubs its loop; a timecode tag rides with the pointer. Stop moving and it plays from there. Phones get autoplay-in-view instead.
 - **Keyframe cursor.** A small diamond, hollow "easy ease" shape over links. Only on mouse/trackpad devices; hidden over form fields.
 - **Text-animator entrance** on every big headline: words rise in with a stagger and a touch of blur.
 - **Reveal** of cards and gallery items as they scroll in.
@@ -116,4 +117,4 @@ To remove any one effect, delete its function call at the bottom of `js/fx.js`. 
 
 - Colours and fonts are CSS variables at the top of `css/style.css`. The site is always dark; add `data-theme="light"` on `<html>` if you ever want the light palette.
 - Thumbnails are 4:3 (`.card-media { aspect-ratio: 4 / 3 }`). Change that one line for 16:9 or 1:1.
-- The grid is two columns on desktop and one on phones. On phones, previews play automatically as they scroll into view since there's no hover.
+- The grid is two columns on desktop and one on phones. Tiles are stills; set a project's `preview` to a muted 4:3 mp4 if you ever want a hover loop back.
