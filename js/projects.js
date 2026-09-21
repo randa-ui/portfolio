@@ -192,7 +192,7 @@ const projects = [
     client: "Fortis",
     role: "",
     year: "",
-    thumb: "https://i.vimeocdn.com/video/820068596-bd2230e934cce1476c9637458df23d998dfc1c35c7fac3d1d18163077b1b0d3a-d_1280",
+    thumb: "assets/thumbs/fortis.jpg",
     preview: "",
     hero: { vimeo: "364596073" },
     description: ["Case study coming soon."],
