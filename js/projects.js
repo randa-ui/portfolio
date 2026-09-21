@@ -46,10 +46,8 @@ const projects = [
     client: "Reel",
     role: "Art direction, Motion design",
     year: "2026",
-    // Tile: Vimeo still, no hover loop. Swap for your own 4:3 still + loop when ready:
-    //   thumb: "assets/thumbs/showreel.jpg", preview: "assets/videos/showreel-preview.mp4",
-    thumb: "https://i.vimeocdn.com/video/708532681-7bf820edad248459ebab170b35dd9e218a2e21fc61dc2f37323a9908dcf86c77-d_1280",
-    preview: "",
+    thumb: "assets/thumbs/showreel.jpg",
+    preview: "", // add "assets/videos/showreel-preview.mp4" when you have a hover loop
     // showreel-hero.mp4 is a web-sized encode of Showreel25.mp4 (the 227 MB master is too heavy to serve)
     hero: { video: "assets/videos/showreel-hero.mp4", poster: "assets/thumbs/showreel-hero.jpg" },
     description: [
