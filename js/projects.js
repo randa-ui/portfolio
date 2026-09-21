@@ -179,7 +179,7 @@ const projects = [
     client: "monday.com",
     role: "",
     year: "",
-    thumb: "https://i.ytimg.com/vi/J4jRLn2wfyc/maxresdefault.jpg",
+    thumb: "assets/thumbs/monday-crm-demo.jpg",
     preview: "",
     hero: { youtube: "J4jRLn2wfyc" },
     description: ["Case study coming soon."],
