@@ -60,7 +60,7 @@ Every project already has an entry and placeholder files. Drop your real exports
 | 13 | The worst about IT | `the-worst-about-it.jpg` | `the-worst-about-it-hero.mp4` |
 | 14 | The president | `the-president.jpg` | `the-president-hero.mp4` |
 | 15 | CRM Nightmare | `crm-nightmare.jpg` | `crm-nightmare-hero.mp4` |
-| 16 | Art of work | `art-of-work.jpg` | `art-of-work-hero.mp4` |
+| 16 | Life of the dead | `life-of-the-dead.jpg` ✓ | `life-of-the-dead-hero.mp4` ✓ |
 
 Each project also has a `-hero.jpg` poster in `assets/thumbs/` shown before the main video loads. Main videos on Vimeo/YouTube instead? Replace the `hero` line with `{ vimeo: "ID" }`.
 
