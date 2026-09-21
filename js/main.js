@@ -10,7 +10,7 @@
     const header = $("#site-header");
     if (header) {
       header.innerHTML = `
-        <a class="brand" href="index.html">${site.fullName} <span>| ${site.role}</span></a>
+        <a class="brand" href="index.html">${site.fullName}</a>
         <nav class="nav" aria-label="Main">
           <a href="index.html" ${page === "home" || page === "project" ? 'aria-current="page"' : ""}>Work</a>
           <a href="about.html" ${page === "about" ? 'aria-current="page"' : ""}>About</a>

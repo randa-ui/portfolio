@@ -81,12 +81,12 @@ The concept: the site behaves like an After Effects comp. All of it lives in `js
 - **Render bar** page transition. Internal links run a 2px bar labelled "rendering…" for ~0.35s before the next page.
 - **Layer selection** on the About portrait: hover shows an AE-style bounding box, handles and anchor point; the photo nudges like a selected layer. Edit the `portrait.jpg` label text in `about.html`.
 - **Rainbow** on the home headline: hovering fades the words into a flowing gradient, word by word. Colours are the gradient stops in the "rainbow" block of `css/style.css`.
-- **Bits**: the ampersand swings on hover, the Send button becomes "Render →", and a keyframe appears next to a focused form label.
+- **Bits**: the plus in the headline spins while hovered, the Send button becomes "Render →", and a keyframe appears next to a focused form label.
 
 To remove any one effect, delete its function call at the bottom of `js/fx.js`. To remove them all, delete the `fx.js` script tag from the four HTML files.
 
 ## Notes
 
-- Colours and fonts are CSS variables at the top of `css/style.css`. It has a dark mode that follows the visitor's system setting; add `data-theme="light"` on `<html>` to force light.
+- Colours and fonts are CSS variables at the top of `css/style.css`. The site is always dark; add `data-theme="light"` on `<html>` if you ever want the light palette.
 - Thumbnails are 4:3 (`.card-media { aspect-ratio: 4 / 3 }`). Change that one line for 16:9 or 1:1.
 - The grid is two columns on desktop and one on phones. On phones, previews play automatically as they scroll into view since there's no hover.

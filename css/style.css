@@ -2,12 +2,14 @@
    Tokens
 ------------------------------------------------------------------ */
 :root {
-  --bg: #ffffff;
-  --ink: #111111;
-  --muted: #7a7a7a;
-  --line: #e8e8e8;
-  --card: #f3f3f1;
-  --accent: #111111;
+  /* Always dark. Light values kept under [data-theme="light"] in case you ever want them. */
+  --bg: #0f0f0f;
+  --ink: #f2f2f2;
+  --muted: #8f8f8f;
+  --line: #262626;
+  --card: #1a1a1a;
+  --accent: #f2f2f2;
+  color-scheme: dark;
 
   /* Type: a warm, low-contrast book serif in the spirit of Anthropic's serif
      (Tiempos family). Source Serif 4 is the closest free match. Mono: DM Mono. */
@@ -21,23 +23,14 @@
   --gap: clamp(12px, 1.4vw, 20px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f0f0f;
-    --ink: #f2f2f2;
-    --muted: #8f8f8f;
-    --line: #262626;
-    --card: #1a1a1a;
-    --accent: #f2f2f2;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0f0f0f;
-  --ink: #f2f2f2;
-  --muted: #8f8f8f;
-  --line: #262626;
-  --card: #1a1a1a;
-  --accent: #f2f2f2;
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --ink: #111111;
+  --muted: #7a7a7a;
+  --line: #e8e8e8;
+  --card: #f3f3f1;
+  --accent: #111111;
+  color-scheme: light;
 }
 
 /* ------------------------------------------------------------------
@@ -195,8 +188,14 @@ video {
   font-size: 13px;
   line-height: 1.7;
   color: var(--muted);
-  max-width: 62ch;
   margin: 0;
+  text-wrap: balance; /* narrow screens: two even lines, no orphan word */
+}
+
+@media (min-width: 1160px) {
+  .intro p {
+    white-space: nowrap; /* desktop: a single line */
+  }
 }
 
 /* ------------------------------------------------------------------
@@ -907,6 +906,23 @@ video {
   position: relative;
   width: fit-content;
   max-width: 100%;
+}
+
+/* ---- the plus in the headline turns while the headline is hovered ----
+   Pivot is set from JS on the glyph's optical centre. A plus is symmetric at
+   180°, so each half-turn lands on an identical pose and the loop is seamless. */
+.amp {
+  display: inline-block;
+  transform-origin: 50% 50%;
+}
+
+.amp.spin {
+  animation: amp-turn 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes amp-turn {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(180deg); }
 }
 
 /* ---- AE layer selection on the About portrait ---- */
