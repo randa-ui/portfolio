@@ -65,7 +65,7 @@ const projects = [
     role: "",
     year: "",
     thumb: "assets/thumbs/abandoned-office.jpg",
-    preview: "", // real still is in; add "assets/videos/abandoned-office-preview.mp4" once you have a real loop
+    preview: "assets/videos/abandoned-office-preview.mp4",
     hero: { video: "assets/videos/abandoned-office-hero.mp4", poster: "assets/thumbs/abandoned-office-hero.jpg" },
     description: ["Case study coming soon."],
     credits: [],
