@@ -211,12 +211,13 @@
 
       <div class="hero">${heroMarkup(p.hero, p.title)}</div>
 
+      ${(p.credits || []).length || (p.description || []).length ? `
       <section class="project-body">
         <ul class="credits">${(p.credits || []).map((c) => `<li>${c}</li>`).join("")}</ul>
         <div class="project-desc">${(p.description || []).map((t) => `<p>${t}</p>`).join("")}</div>
-      </section>
+      </section>` : ""}
 
-      <section class="gallery">${(p.gallery || []).map(galleryItem).join("")}</section>
+      ${(p.gallery || []).length ? `<section class="gallery">${p.gallery.map(galleryItem).join("")}</section>` : ""}
 
       <nav class="project-nav" aria-label="More projects">
         <a href="project.html?p=${prev.slug}"><span class="label">← Previous</span><span class="title">${prev.title}</span></a>
