@@ -30,10 +30,10 @@ const site = {
   role: "Art director + motion expert",
   tagline:
     "I specialize in delivering creative solutions across the entire production pipeline, from concept development to final delivery.",
-  email: "hello@randaskal.com",
+  email: "randaskal@gmail.com",
   location: "Tel Aviv, Israel",
-  instagram: "https://www.instagram.com/your-handle",
-  linkedin: "https://www.linkedin.com/in/your-handle",
+  instagram: "https://www.instagram.com/randaskal/",
+  linkedin: "https://www.linkedin.com/in/ran-daskal-80521525/",
   // Contact form: create a free form at https://formspree.io and paste the endpoint here.
   // Until you do, the form falls back to opening your email client.
   formEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
