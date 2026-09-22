@@ -58,7 +58,7 @@ Every project already has an entry and placeholder files. Drop your real exports
 | 11 | monday CRM demo | `monday-crm-demo.jpg` | `monday-crm-demo-hero.mp4` |
 | 12 | Fortis | `fortis.jpg` | `fortis-hero.mp4` |
 | 13 | The worst about IT | `the-worst-about-it.jpg` | `the-worst-about-it-hero.mp4` |
-| 14 | The Menorah | `the-menorah.jpg` | Vimeo 364597229 |
+| 14 | The Menorah | `the-menorah.jpg` ✓ | Vimeo 364597229 |
 | 15 | CRM Nightmare | `crm-nightmare.jpg` | `crm-nightmare-hero.mp4` |
 | 16 | Life of the dead | `life-of-the-dead.jpg` ✓ | `life-of-the-dead-hero.mp4` ✓ |
 

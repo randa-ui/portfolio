@@ -218,7 +218,7 @@ const projects = [
     client: "KAN",
     role: "",
     year: "",
-    thumb: "https://i.vimeocdn.com/video/820068398-333cd4142c07d4ce82077b226c379dac09f0d8cc0bd5f240c2f158e05a3b6db8-d_1280",
+    thumb: "assets/thumbs/the-menorah.jpg",
     preview: "",
     hero: { vimeo: "364597229" },
     description: [],
