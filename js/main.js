@@ -5,6 +5,16 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const page = document.body.dataset.page;
 
+  // Cache-busting: tools/publish.sh stamps ?v=<timestamp> on the script tags.
+  // We reuse that stamp on local asset URLs so browsers fetch fresh tiles and
+  // videos after every publish (GitHub Pages otherwise caches for 10 minutes).
+  const VERSION = (() => {
+    const me = document.querySelector('script[src*="js/main.js"]');
+    const m = me && me.getAttribute("src").match(/[?&]v=([^&]+)/);
+    return m ? m[1] : "";
+  })();
+  const asset = (url) => (url && VERSION && !/^https?:/.test(url) ? `${url}?v=${VERSION}` : url);
+
   /* ---------- Header + footer, rendered once so all pages stay in sync ---------- */
   function renderChrome() {
     const header = $("#site-header");
@@ -109,10 +119,10 @@
         (p) => `
         <a class="card" href="project.html?p=${p.slug}">
           <div class="card-media${p.loop ? " is-loop" : ""}">
-            <img src="${p.thumb}" alt="" loading="lazy" decoding="async">
+            <img src="${asset(p.thumb)}" alt="" loading="lazy" decoding="async">
             ${p.loop
-              ? `<video src="${p.loop}" poster="${p.thumb}" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>`
-              : p.preview ? `<video src="${p.preview}" muted loop playsinline preload="none" aria-hidden="true"></video>` : ""}
+              ? `<video src="${asset(p.loop)}" poster="${asset(p.thumb)}" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>`
+              : p.preview ? `<video src="${asset(p.preview)}" muted loop playsinline preload="none" aria-hidden="true"></video>` : ""}
           </div>
           <div class="card-caption">
             <h2 class="card-title">${p.title}</h2>
@@ -164,7 +174,7 @@
         title="${title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
     }
     if (hero.video) {
-      return `<video src="${hero.video}" ${hero.poster ? `poster="${hero.poster}"` : ""}
+      return `<video src="${asset(hero.video)}" ${hero.poster ? `poster="${asset(hero.poster)}"` : ""}
         controls autoplay muted loop playsinline></video>`;
     }
     return "";
@@ -174,10 +184,10 @@
     const span = item.span === 2 ? "span-2" : "";
     let media = "";
     if (item.type === "video") {
-      media = `<video src="${item.src}" autoplay muted loop playsinline preload="metadata"></video>`;
+      media = `<video src="${asset(item.src)}" autoplay muted loop playsinline preload="metadata"></video>`;
     } else {
       // gif or image
-      media = `<img src="${item.src}" alt="${item.caption || ""}" loading="lazy" decoding="async">`;
+      media = `<img src="${asset(item.src)}" alt="${item.caption || ""}" loading="lazy" decoding="async">`;
     }
     return `
       <figure class="gallery-item ${span}">

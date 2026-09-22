@@ -89,11 +89,13 @@ The site is live on GitHub Pages:
 - **Repo:** https://github.com/randa-ui/portfolio
 - **Domain:** bought at Wix; its DNS points at GitHub (four A records → 185.199.108–111.153, `www` CNAME → randa-ui.github.io). The `CNAME` file in this folder tells GitHub which domain to serve — don't delete it.
 
-To publish changes, commit and push from this folder. GitHub rebuilds the site in about a minute:
+To publish changes, run the publish script from this folder. It stamps a new cache-busting version (so visitors see changes immediately instead of after GitHub's 10-minute cache), commits and pushes. GitHub rebuilds in about a minute:
 
 ```bash
-git add -A && git commit -m "Update site" && git push
+tools/publish.sh "what changed"
 ```
+
+(Plain `git add -A && git commit && git push` also works, but browsers may show the old version for up to 10 minutes.)
 
 Files listed in `.gitignore` are never uploaded. The 217 MB master reel (`Showreel25.mp4`) is excluded on purpose: GitHub refuses files over 100 MB, and the site plays the web-sized `showreel-hero.mp4` instead. Keep future masters out of `assets` or add them to `.gitignore`.
 
