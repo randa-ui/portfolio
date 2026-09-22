@@ -99,7 +99,7 @@
           const ctx = document.createElement("canvas").getContext("2d");
           const calibrate = () => {
             amps.forEach((a) => {
-              if (a.classList.contains("spin")) return; // measure at rest only
+              if (a.classList.contains("spin") || a.classList.contains("spin-once")) return; // measure at rest only
               const cs = getComputedStyle(a);
               ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
               const m = ctx.measureText("+");
@@ -129,8 +129,18 @@
           );
           const setSpin = (on) => {
             wantSpin = on;
-            if (on) amps.forEach((a) => a.classList.add("spin"));
+            if (on) amps.forEach((a) => { a.classList.remove("spin-once"); a.classList.add("spin"); });
           };
+
+          // Idle: when not hovered, do the same half-turn once every 5 seconds.
+          amps.forEach((a) => a.addEventListener("animationend", () => a.classList.remove("spin-once")));
+          setInterval(() => {
+            if (wantSpin) return;
+            amps.forEach((a) => {
+              if (a.classList.contains("spin") || a.classList.contains("spin-once")) return;
+              a.classList.add("spin-once");
+            });
+          }, 5000);
 
           let off = 0, leaving = 0;
           h.addEventListener("mouseover", (e) => {

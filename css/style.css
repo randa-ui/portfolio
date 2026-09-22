@@ -918,8 +918,12 @@ video {
   transform-origin: 50% 50%;
 }
 
+.amp.spin-once {
+  animation: amp-turn 1.2s cubic-bezier(0.45, 0, 0.55, 1) 1; /* idle: one half-turn every 5s */
+}
+
 .amp.spin {
-  animation: amp-turn 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation: amp-turn 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; /* hovered: keeps turning */
 }
 
 @keyframes amp-turn {
