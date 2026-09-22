@@ -59,7 +59,7 @@ const projects = [
   {
     slug: "abandoned-office",
     title: "Abandoned Office",
-    client: "",
+    client: "monday.com",
     role: "",
     year: "",
     thumb: "assets/thumbs/abandoned-office.jpg",
@@ -85,7 +85,7 @@ const projects = [
   {
     slug: "truth-bomb",
     title: "Truth Bomb",
-    client: "",
+    client: "monday.com",
     role: "",
     year: "",
     thumb: "assets/thumbs/truth-bomb.jpg",
@@ -97,8 +97,8 @@ const projects = [
   },
   {
     slug: "wordtune",
-    title: "Wordtune",
-    client: "Wordtune",
+    title: "Wordtune Spices",
+    client: "AI21 Labs",
     role: "",
     year: "",
     thumb: "assets/thumbs/wordtune.jpg",
@@ -110,7 +110,7 @@ const projects = [
   },
   {
     slug: "fortis",
-    title: "Fortis",
+    title: "Sophia",
     client: "Fortis",
     role: "",
     year: "",
@@ -163,7 +163,7 @@ const projects = [
   {
     slug: "life-of-the-dead",
     title: "Life of the dead",
-    client: "",
+    client: "KAN",
     role: "",
     year: "",
     thumb: "assets/thumbs/life-of-the-dead.jpg",
@@ -176,7 +176,7 @@ const projects = [
   {
     slug: "im-an-actor",
     title: "I'm an actor",
-    client: "",
+    client: "monday.com",
     role: "",
     year: "",
     thumb: "assets/thumbs/im-an-actor.jpg",
@@ -189,7 +189,7 @@ const projects = [
   {
     slug: "the-biggest-deal",
     title: "The biggest deal",
-    client: "",
+    client: "monday.com",
     role: "",
     year: "",
     thumb: "assets/thumbs/the-biggest-deal.jpg",
@@ -240,8 +240,8 @@ const projects = [
   },
   {
     slug: "the-worst-about-it",
-    title: "The worst about IT",
-    client: "",
+    title: "Hate Your IT Job?",
+    client: "monday.com",
     role: "",
     year: "",
     thumb: "assets/thumbs/the-worst-about-it.jpg",
