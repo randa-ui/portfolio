@@ -108,9 +108,11 @@
       .map(
         (p) => `
         <a class="card" href="project.html?p=${p.slug}">
-          <div class="card-media">
+          <div class="card-media${p.loop ? " is-loop" : ""}">
             <img src="${p.thumb}" alt="" loading="lazy" decoding="async">
-            ${p.preview ? `<video src="${p.preview}" muted loop playsinline preload="none" aria-hidden="true"></video>` : ""}
+            ${p.loop
+              ? `<video src="${p.loop}" poster="${p.thumb}" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>`
+              : p.preview ? `<video src="${p.preview}" muted loop playsinline preload="none" aria-hidden="true"></video>` : ""}
           </div>
           <div class="card-caption">
             <h2 class="card-title">${p.title}</h2>
@@ -119,7 +121,8 @@
         </a>`
       )
       .join("");
-    grid.querySelectorAll(".card-media").forEach(wireHoverVideo);
+    grid.querySelectorAll(".card-media:not(.is-loop)").forEach(wireHoverVideo);
+    wireAutoplayLoops(grid); // "GIF" tiles: play while in view
   }
 
   /* ---------- Autoplay loops (gallery + self-hosted hero) ----------

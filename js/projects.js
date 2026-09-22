@@ -12,6 +12,8 @@
      year        "2025"
      thumb       4:3 poster image shown before the hover video loads
      preview     optional 4:3 muted hover loop (mp4). Leave "" for a still-only tile.
+     loop        optional 4:3 muted mp4 that plays continuously in the tile (a "GIF" tile).
+                 The thumb is used as its poster.
      hero        the big player. Use ONE of:
                    { vimeo: "123456789" }
                    { youtube: "dQw4w9WgXcQ" }
@@ -64,6 +66,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/abandoned-office.jpg",
     preview: "",
+    loop: "assets/videos/abandoned-office-loop.mp4",
     hero: { video: "assets/videos/abandoned-office-hero.mp4", poster: "assets/thumbs/abandoned-office-hero.jpg" },
     description: [],
     credits: [],
@@ -116,6 +119,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/fortis.jpg",
     preview: "",
+    loop: "assets/videos/fortis-loop.mp4",
     hero: { vimeo: "364596073" },
     description: [],
     credits: [],
@@ -142,6 +146,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/the-biggest-deal.jpg",
     preview: "",
+    loop: "assets/videos/the-biggest-deal-loop.mp4",
     hero: { video: "assets/videos/the-biggest-deal-hero.mp4", poster: "assets/thumbs/the-biggest-deal-hero.jpg" },
     description: [],
     credits: [],
@@ -155,6 +160,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/monday-service.jpg",
     preview: "",
+    loop: "assets/videos/monday-service-loop.mp4",
     hero: { video: "assets/videos/monday-service-hero.mp4", poster: "assets/thumbs/monday-service-hero.jpg" },
     description: [],
     credits: [],
@@ -246,6 +252,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/the-worst-about-it.jpg",
     preview: "",
+    loop: "assets/videos/the-worst-about-it-loop.mp4",
     hero: { video: "assets/videos/the-worst-about-it-hero.mp4", poster: "assets/thumbs/the-worst-about-it-hero.jpg" },
     description: [],
     credits: [],
