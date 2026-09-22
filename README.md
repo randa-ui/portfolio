@@ -117,4 +117,10 @@ To remove any one effect, delete its function call at the bottom of `js/fx.js`. 
 
 - Colours and fonts are CSS variables at the top of `css/style.css`. The site is always dark; add `data-theme="light"` on `<html>` if you ever want the light palette.
 - Thumbnails are 4:3 (`.card-media { aspect-ratio: 4 / 3 }`). Change that one line for 16:9 or 1:1.
-- The grid is two columns on desktop and one on phones. Tiles are stills; set a project's `preview` to a muted 4:3 mp4 if you ever want a hover loop back.
+- The grid is two columns on desktop and one on phones. Tiles are stills by default. For an animated "GIF" tile, set the project's `loop` to a muted 4:3 mp4 (it plays continuously while on screen; the `thumb` is its poster). Make one from a GIF with:
+
+  ```bash
+  ffmpeg -i tile.gif -an -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" -c:v libx264 -preset slow -crf 24 -movflags +faststart assets/videos/<slug>-loop.mp4
+  ```
+
+  Current animated tiles: Abandoned Office, Hate Your IT Job?, Sophia, monday Service, The biggest deal (sources: Dropbox `___THUMBS/GIF/01–05.gif`).
