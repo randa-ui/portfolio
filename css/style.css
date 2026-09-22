@@ -185,16 +185,16 @@ video {
 
 .intro p {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 15.6px; /* 13px + 20% */
   line-height: 1.7;
   color: var(--muted);
   margin: 0;
   text-wrap: balance; /* narrow screens: two even lines, no orphan word */
 }
 
-@media (min-width: 1160px) {
+@media (min-width: 1360px) {
   .intro p {
-    white-space: nowrap; /* desktop: a single line */
+    white-space: nowrap; /* wide desktop: a single line */
   }
 }
 
