@@ -992,6 +992,43 @@ video {
 .h-b  { left: 50%; top: 100%; }
 .h-br { left: 100%; top: 100%; }
 
+/* anchor point, AE style: a small ring with four ticks OUTSIDE it (nothing crosses the centre) */
+.layer-box .anchor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+}
+
+.layer-box .anchor::before,
+.layer-box .anchor::after {
+  content: "";
+  position: absolute;
+  background: var(--ink);
+}
+
+/* horizontal ticks: 7px long, starting 3px outside the ring on each side */
+.layer-box .anchor::before {
+  top: 50%;
+  height: 1px;
+  left: -10px;
+  right: -10px;
+  background: linear-gradient(to right, var(--ink) 0 7px, transparent 7px calc(100% - 7px), var(--ink) calc(100% - 7px) 100%);
+}
+
+/* vertical ticks */
+.layer-box .anchor::after {
+  left: 50%;
+  width: 1px;
+  top: -10px;
+  bottom: -10px;
+  background: linear-gradient(to bottom, var(--ink) 0 7px, transparent 7px calc(100% - 7px), var(--ink) calc(100% - 7px) 100%);
+}
+
 /* ---- Send → Render button swap ---- */
 .btn-swap {
   display: grid;
