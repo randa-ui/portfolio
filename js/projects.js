@@ -186,7 +186,7 @@ const projects = [
     client: "KAN",
     role: "",
     year: "",
-    thumb: "https://i.vimeocdn.com/video/820069563-15f8d975aec27236a3809dc18779e6c37c004da140220e96118bf0902d2335f5-d_1280",
+    thumb: "assets/thumbs/salt.jpg",
     preview: "",
     hero: { vimeo: "364595929" },
     description: [],
