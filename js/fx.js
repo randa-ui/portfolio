@@ -193,7 +193,7 @@
   function renderBar() {
     const bar = document.createElement("div");
     bar.id = "render";
-    bar.innerHTML = '<div class="render-fill"></div><span class="render-label">rendering…</span>';
+    bar.innerHTML = '<div class="render-fill"></div>';
     document.body.appendChild(bar);
 
     document.addEventListener("click", (e) => {

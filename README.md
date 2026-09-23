@@ -108,7 +108,7 @@ The concept: the site behaves like an After Effects comp. All of it lives in `js
 - **Keyframe cursor.** A small diamond, hollow "easy ease" shape over links. Only on mouse/trackpad devices; hidden over form fields.
 - **Text-animator entrance** on every big headline: words rise in with a stagger and a touch of blur.
 - **Reveal** of cards and gallery items as they scroll in.
-- **Render bar** page transition. Internal links run a 2px bar labelled "rendering…" for ~0.35s before the next page.
+- **Render bar** page transition. Internal links run a thin 2px progress bar for ~0.35s before the next page.
 - **Layer selection** on the About portrait: hover shows an AE-style bounding box, handles and anchor point; the photo nudges like a selected layer.
 - **Rainbow** on the home headline: hovering fades the words into a flowing gradient, word by word. Colours are the gradient stops in the "rainbow" block of `css/style.css`.
 - **Bits**: the plus in the headline spins while hovered, the Send button becomes "Render →", and a keyframe appears next to a focused form label.
