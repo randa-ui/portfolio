@@ -918,17 +918,20 @@ video {
   transform-origin: 50% 50%;
 }
 
+/* Full 360° turns: the glyph lands exactly where it started, so removing the
+   animation never causes a visible hop (a 180° turn did, because the pivot can
+   only be measured to within a fraction of a pixel). */
 .amp.spin-once {
-  animation: amp-turn 1.2s cubic-bezier(0.45, 0, 0.55, 1) 1; /* idle: one half-turn every 5s */
+  animation: amp-turn 1.5s cubic-bezier(0.45, 0, 0.55, 1) 1; /* idle: one full turn every 5s */
 }
 
 .amp.spin {
-  animation: amp-turn 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; /* hovered: keeps turning */
+  animation: amp-turn 1.5s cubic-bezier(0.45, 0, 0.55, 1) infinite; /* hovered: keeps turning */
 }
 
 @keyframes amp-turn {
   from { transform: rotate(0deg); }
-  to   { transform: rotate(180deg); }
+  to   { transform: rotate(360deg); }
 }
 
 /* ---- AE layer selection on the About portrait ---- */
