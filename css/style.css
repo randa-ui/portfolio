@@ -992,24 +992,6 @@ video {
 .h-b  { left: 50%; top: 100%; }
 .h-br { left: 100%; top: 100%; }
 
-.layer-box .anchor {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  margin: -7px 0 0 -7px;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-}
-
-.layer-box .anchor::before,
-.layer-box .anchor::after {
-  content: "";
-  position: absolute;
-  background: var(--ink);
-}
-
 .layer-box .anchor::before {
   left: -6px;
   right: -6px;
