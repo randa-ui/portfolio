@@ -992,20 +992,6 @@ video {
 .h-b  { left: 50%; top: 100%; }
 .h-br { left: 100%; top: 100%; }
 
-.layer-box .anchor::before {
-  left: -6px;
-  right: -6px;
-  top: 50%;
-  height: 1px;
-}
-
-.layer-box .anchor::after {
-  top: -6px;
-  bottom: -6px;
-  left: 50%;
-  width: 1px;
-}
-
 /* ---- Send → Render button swap ---- */
 .btn-swap {
   display: grid;
