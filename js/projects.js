@@ -215,7 +215,6 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/life-of-the-dead.jpg",
     preview: "",
-    loop: "assets/videos/life-of-the-dead-loop.mp4",
     hero: { video: "assets/videos/life-of-the-dead-hero.mp4", poster: "assets/thumbs/life-of-the-dead-hero.jpg" },
     description: [],
     credits: [],
