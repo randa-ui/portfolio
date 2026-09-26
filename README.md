@@ -11,8 +11,8 @@ js/projects.js  ← ALL your content lives here (name, links, projects)
 js/main.js      Renders the grid / project pages, form
 js/fx.js        The fun layer: keyframe cursor, text entrances, render bar, layer box
 css/style.css   Styles (colours + fonts are tokens at the top; FX styles at the bottom)
-assets/         thumbs/ (posters), videos/ (previews + heroes), gifs/ (project extras)
-tools/          ingest-video.sh (master film → web encode + poster + tile still), make-placeholders.sh (gradient dummies)
+assets/         thumbs/ (tiles + posters), videos/ (films + tile loops), gallery/<slug>/ (process items)
+tools/          ingest-video.sh (film → web encode), ingest-process.sh (Dropbox PROCESS folder → gallery+credits), publish.sh
 ```
 
 ## Preview locally
@@ -65,6 +65,28 @@ Every project already has an entry and placeholder files. Drop your real exports
 Each project also has a `-hero.jpg` poster in `assets/thumbs/` shown before the main video loads. Main videos on Vimeo/YouTube instead? Replace the `hero` line with `{ vimeo: "ID" }`.
 
 Empty `client`, `role` and `year` fields are hidden automatically, so fill them in as you go.
+
+## Process gallery + credits on a project page
+
+Each project page can show, under the main video: a short description, a credits list, and a gallery of process clips / GIFs / stills (two per row, or full width). Content lives in Dropbox:
+
+```
+___THUMBS/PROCESS/<slug>/        e.g. PROCESS/truth-bomb/
+  01 -- Storyboard frames.png    ← numbered for order; "-- Caption" is optional
+  02 wide -- Animatic.mp4        ← "wide" anywhere in the name = full-width item
+  03.gif
+  credits.txt                    ← one "Role — Name" per line
+  description.txt                ← one or two paragraphs, blank line between
+```
+
+Then run (or ask Claude to run):
+
+```bash
+tools/ingest-process.sh truth-bomb     # or: tools/ingest-process.sh all
+tools/publish.sh "Truth Bomb: process gallery"
+```
+
+Videos and GIFs are re-encoded as muted web loops (max 1600px wide) into `assets/gallery/<slug>/`, images are resized to 1600px, and the project's `gallery`, `credits` and `description` in `js/projects.js` are rewritten from the folder. Re-run any time you change the folder.
 
 ## Your details
 
