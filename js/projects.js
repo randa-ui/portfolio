@@ -74,9 +74,11 @@ const projects = [
     ],
     credits: [
       "Client — monday.com",
-      "Direction — Ran Daskal",
-      "Animation — Ran Daskal",
-      "Compositing — Ran Daskal",
+      "Director — Ari Kuchar",
+      "Art Director — Noam Locker",
+      "Motion & Compositing — Ran Daskal",
+      "Set Design & Character Development — Noam Locker & Ran Daskal",
+      "Color — Dvir Aviram",
     ],
     gallery: [
       {"type": "image", "src": "assets/gallery/abandoned-office/01.jpg", "span": 1, "caption": "Frame from the film"},
