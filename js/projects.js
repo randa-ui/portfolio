@@ -81,7 +81,7 @@ const projects = [
     gallery: [
       {"type": "image", "src": "assets/gallery/abandoned-office/01.jpg", "span": 1, "caption": "Frame from the film"},
       {"type": "image", "src": "assets/gallery/abandoned-office/02.jpg", "span": 1, "caption": "The light switch character"},
-      {"type": "video", "src": "assets/gallery/abandoned-office/03.mp4", "span": 2, "caption": "End card loop"},
+      {"type": "image", "src": "assets/gallery/abandoned-office/03.jpg", "span": 2, "caption": "Character Visual Development"},
       {"type": "video", "src": "assets/gallery/abandoned-office/04.mp4", "span": 1, "caption": "Desk detail"},
       {"type": "image", "src": "assets/gallery/abandoned-office/05.jpg", "span": 1, "caption": "Office set"},
     ],
