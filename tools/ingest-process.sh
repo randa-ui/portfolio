@@ -24,13 +24,18 @@ ingest_one() {
     n=$((n+1)); local nn; nn=$(printf "%02d" "$n")
     caption=""; [[ "$base" == *" -- "* ]] && caption="${base#* -- }" && caption="${caption%.*}"
     span=1; [[ "$(echo "$base" | tr 'A-Z' 'a-z')" == *wide* ]] && span=2
+    # "fit" in the name: keep the item's own proportions but pad it onto a 16:9 canvas
+    # (site-black bars, so the padding is invisible on the page)
+    local vf_fit="scale=1600:900:force_original_aspect_ratio=decrease:flags=lanczos,pad=1600:900:(ow-iw)/2:(oh-ih)/2:color=0x0f0f0f"
+    local vf_plain="scale='min(1600,iw)':-2:flags=lanczos"
+    local vf="$vf_plain"; [[ "$(echo "$base" | tr 'A-Z' 'a-z')" == *fit* ]] && vf="$vf_fit"
     if [[ "$ext" == "mp4" || "$ext" == "mov" || "$ext" == "gif" ]]; then
       type=video; dst="$out/$nn.mp4"
-      ffmpeg -y -loglevel error -i "$f" -an -vf "scale='min(1600,iw)':-2:flags=lanczos,scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" \
+      ffmpeg -y -loglevel error -i "$f" -an -vf "$vf,scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" \
         -c:v libx264 -preset slow -crf 24 -movflags +faststart "$dst"
     else
       type=image; dst="$out/$nn.jpg"
-      ffmpeg -y -loglevel error -i "$f" -vf "scale='min(1600,iw)':-2:flags=lanczos" -q:v 3 "$dst"
+      ffmpeg -y -loglevel error -i "$f" -vf "$vf" -q:v 3 "$dst"
     fi
     printf "   %s  %-5s span %s  %s%s\n" "$nn" "$type" "$span" "$base" "${caption:+  → \"$caption\"}"
     items+=("{\"type\":\"$type\",\"src\":\"$dst\",\"span\":$span,\"caption\":\"$caption\"}")
