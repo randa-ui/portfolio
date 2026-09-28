@@ -31,11 +31,11 @@ ingest_one() {
     local vf="$vf_plain"; [[ "$(echo "$base" | tr 'A-Z' 'a-z')" == *fit* ]] && vf="$vf_fit"
     if [[ "$ext" == "mp4" || "$ext" == "mov" || "$ext" == "gif" ]]; then
       type=video; dst="$out/$nn.mp4"
-      ffmpeg -y -loglevel error -i "$f" -an -vf "$vf,scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" \
+      ffmpeg -nostdin -y -loglevel error -i "$f" -an -vf "$vf,scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" \
         -c:v libx264 -preset slow -crf 24 -movflags +faststart "$dst"
     else
       type=image; dst="$out/$nn.jpg"
-      ffmpeg -y -loglevel error -i "$f" -vf "$vf" -q:v 3 "$dst"
+      ffmpeg -nostdin -y -loglevel error -i "$f" -vf "$vf" -q:v 3 "$dst"
     fi
     printf "   %s  %-5s span %s  %s%s\n" "$nn" "$type" "$span" "$base" "${caption:+  → \"$caption\"}"
     items+=("{\"type\":\"$type\",\"src\":\"$dst\",\"span\":$span,\"caption\":\"$caption\"}")
