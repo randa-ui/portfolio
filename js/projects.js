@@ -97,8 +97,13 @@ const projects = [
     thumb: "assets/thumbs/your-crm-is-old.jpg",
     preview: "",
     hero: { video: "assets/videos/your-crm-is-old-hero.mp4", poster: "assets/thumbs/your-crm-is-old-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "A dialogue piece for monday CRM: two colleagues argue about their outdated CRM until the product steps in to settle it, with the UI animated into the live-action scene.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -111,8 +116,13 @@ const projects = [
     preview: "",
     loop: "assets/videos/wordtune-loop.mp4",
     hero: { vimeo: "790074777" },
-    description: [],
-    credits: [],
+    description: [
+      "Product film for Wordtune Spices, told through a needle-felted cat at its desk discovering what AI writing tools can do.",
+    ],
+    credits: [
+      "Client — AI21 Labs",
+      "Motion Design & Animation — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -124,8 +134,13 @@ const projects = [
     thumb: "assets/thumbs/truth-bomb.jpg",
     preview: "",
     hero: { video: "assets/videos/truth-bomb-hero.mp4", poster: "assets/thumbs/truth-bomb-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "A presenter delivers hard truths about CRM customisation while kinetic type wraps around the live-action frame.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -138,8 +153,13 @@ const projects = [
     preview: "",
     loop: "assets/videos/fortis-loop.mp4",
     hero: { vimeo: "364596073" },
-    description: [],
-    credits: [],
+    description: [
+      "Illustrated opening sequence for Sophia, a Fortis production: ink-drawn insects and figures animated over soft pastel backdrops.",
+    ],
+    credits: [
+      "Client — Fortis",
+      "Design & Animation — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -152,8 +172,13 @@ const projects = [
     preview: "",
     loop: "assets/videos/monday-service-loop.mp4",
     hero: { video: "assets/videos/monday-service-hero.mp4", poster: "assets/thumbs/monday-service-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "Explainer for monday Service: tickets, service requests and AI agents, mixing office live action with animated product screens.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -166,8 +191,13 @@ const projects = [
     preview: "",
     loop: "assets/videos/the-biggest-deal-loop.mp4",
     hero: { video: "assets/videos/the-biggest-deal-hero.mp4", poster: "assets/thumbs/the-biggest-deal-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "A sales-team story for monday CRM, following one deal from proposal to Won, with the product UI animated into the office scenes.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -179,8 +209,13 @@ const projects = [
     thumb: "assets/thumbs/the-menorah.jpg",
     preview: "",
     hero: { vimeo: "364597229" },
-    description: [],
-    credits: [],
+    description: [
+      "Title sequence for the KAN History documentary on the Menorah, the state emblem of Israel.",
+    ],
+    credits: [
+      "Client — KAN",
+      "Design & Animation — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -192,8 +227,13 @@ const projects = [
     thumb: "assets/thumbs/monday-crm-agents.jpg",
     preview: "",
     hero: { video: "assets/videos/monday-crm-agents-hero.mp4", poster: "assets/thumbs/monday-crm-agents-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "Launch film introducing AI agents in monday CRM, from sourcing leads to closing deals.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -205,8 +245,13 @@ const projects = [
     thumb: "assets/thumbs/salt.jpg",
     preview: "",
     hero: { vimeo: "364595929" },
-    description: [],
-    credits: [],
+    description: [
+      "Opening titles for the KAN History film on S.A.L.T, the Strategic Arms Limitation Talks: archive photography, torn paper and typewriter type.",
+    ],
+    credits: [
+      "Client — KAN",
+      "Design & Animation — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -219,8 +264,13 @@ const projects = [
     preview: "",
     loop: "assets/videos/crm-nightmare-loop.mp4",
     hero: { video: "assets/videos/crm-nightmare-hero.mp4", poster: "assets/thumbs/crm-nightmare-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "A CRM horror story: one salesperson's nightmares of lost leads and messy pipelines, until monday CRM lets her sleep.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -232,8 +282,13 @@ const projects = [
     thumb: "assets/thumbs/life-of-the-dead.jpg",
     preview: "",
     hero: { video: "assets/videos/life-of-the-dead-hero.mp4", poster: "assets/thumbs/life-of-the-dead-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "Title sequence for the KAN History documentary Life of the Dead, built from archive footage and documents.",
+    ],
+    credits: [
+      "Client — KAN",
+      "Design & Animation — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -245,8 +300,13 @@ const projects = [
     thumb: "assets/thumbs/monday-crm-demo.jpg",
     preview: "",
     hero: { youtube: "J4jRLn2wfyc" },
-    description: [],
-    credits: [],
+    description: [
+      "Product demo for monday CRM showing how AI clears the path to faster deals and better decisions.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -258,8 +318,13 @@ const projects = [
     thumb: "assets/thumbs/im-an-actor.jpg",
     preview: "",
     hero: { video: "assets/videos/im-an-actor-hero.mp4", poster: "assets/thumbs/im-an-actor-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "A presenter on a green-screen set walks through the monday.com product, with the animated UI composited around the performance.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
   {
@@ -272,8 +337,13 @@ const projects = [
     preview: "",
     loop: "assets/videos/the-worst-about-it-loop.mp4",
     hero: { video: "assets/videos/the-worst-about-it-hero.mp4", poster: "assets/thumbs/the-worst-about-it-hero.jpg" },
-    description: [],
-    credits: [],
+    description: [
+      "A testimonial-style spot for monday Service: an IT director on what makes the job hard, and what fixes it.",
+    ],
+    credits: [
+      "Client — monday.com",
+      "Motion & Compositing — Ran Daskal",
+    ],
     gallery: [],
   },
 ];
