@@ -37,6 +37,29 @@ def read_index():
     lines = [re.sub(r"<[^>]+>", "", x).strip() for x in raw.split("<br>")]
     return {"headline1": lines[0] if lines else "", "headline2": lines[1] if len(lines) > 1 else ""}
 
+PAGES = {"home": "index.html", "about": "about.html", "contact": "contact.html", "project": "project.html"}
+
+def read_pages():
+    out = {}
+    for key, f in PAGES.items():
+        t = open(f, encoding="utf-8").read()
+        title = re.search(r"<title>(.*?)</title>", t, re.S)
+        desc = re.search(r'<meta name="description" content="(.*?)">', t)
+        out[key] = {"title": unescape(title.group(1)) if title else "", "description": unescape(desc.group(1)) if desc else ""}
+    return out
+
+def write_pages(pages):
+    for key, f in PAGES.items():
+        if key not in pages: continue
+        t = open(f, encoding="utf-8").read()
+        t = re.sub(r"<title>.*?</title>", "<title>" + escape(pages[key].get("title", "")) + "</title>", t, count=1, flags=re.S)
+        d = escape(pages[key].get("description", "")).replace('"', "&quot;")
+        if re.search(r'<meta name="description"', t):
+            t = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{d}">', t, count=1)
+        elif d:
+            t = t.replace("</title>", f'</title>\n  <meta name="description" content="{d}">', 1)
+        open(f, "w", encoding="utf-8").write(t)
+
 def read_about():
     s = open("about.html", encoding="utf-8").read()
     text = re.search(r'<div class="about-text">(.*?)<div class="facts">', s, re.S)
@@ -75,6 +98,11 @@ def write_projects_js(data):
     out.append("  // Contact form: create a free form at https://formspree.io and paste the endpoint here.")
     out.append("  // Until you do, the form falls back to opening your email client.")
     out.append(f"  formEndpoint: {js_str(site.get('formEndpoint', 'https://formspree.io/f/YOUR_FORM_ID'))},")
+    out.append("  // Every small piece of interface text (edit in the Site Editor → Texts tab)")
+    out.append("  text: {")
+    for k, v in (site.get("text") or {}).items():
+        out.append(f"    {k}: {js_str(v)},")
+    out.append("  },")
     out.append("};")
     out.append("")
     out.append("const projects = [")
@@ -185,7 +213,7 @@ class H(http.server.SimpleHTTPRequestHandler):
             self.send_response(200); self.send_header("Content-Type", "text/html; charset=utf-8"); self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b); return
         if path == "/api/content":
             try:
-                d = read_projects_js(); d["home"] = read_index(); d["about"] = read_about(); d["build"] = build_status()
+                d = read_projects_js(); d["home"] = read_index(); d["about"] = read_about(); d["pages"] = read_pages(); d["build"] = build_status()
                 return self._json(d)
             except Exception as e:
                 return self._json({"error": str(e)}, 500)
@@ -200,7 +228,7 @@ class H(http.server.SimpleHTTPRequestHandler):
             try:
                 d = json.loads(self.rfile.read(length))
                 write_projects_js({"site": d["site"], "projects": d["projects"]})
-                write_index(d["home"]); write_about(d["about"])
+                write_index(d["home"]); write_about(d["about"]); write_pages(d.get("pages", {}))
                 return self._json({"ok": True})
             except Exception as e:
                 return self._json({"ok": False, "error": str(e)}, 500)

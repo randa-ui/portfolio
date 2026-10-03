@@ -222,7 +222,7 @@
     const btn = $("#contact-form .btn");
     if (!btn) return;
     const label = btn.textContent.trim();
-    btn.innerHTML = `<span class="btn-swap"><span>${label}</span><span aria-hidden="true">Render →</span></span>`;
+    btn.innerHTML = `<span class="btn-swap"><span>${label}</span><span aria-hidden="true">${(((typeof site !== "undefined" ? site : {}).text) || {}).formSendHover || "Render →"}</span></span>`;
   }
 
   keyframeCursor();

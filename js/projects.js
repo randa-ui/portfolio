@@ -38,6 +38,34 @@ const site = {
   // Contact form: create a free form at https://formspree.io and paste the endpoint here.
   // Until you do, the form falls back to opening your email client.
   formEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
+  // Every small piece of interface text (edit in the Site Editor → Texts tab)
+  text: {
+    navWork: "Work",
+    navAbout: "About",
+    navContact: "Contact",
+    footerEmail: "Email",
+    footerInstagram: "Instagram",
+    footerLinkedin: "LinkedIn",
+    metaClient: "Client",
+    metaRole: "Role",
+    metaYear: "Year",
+    prev: "← Previous",
+    next: "Next →",
+    notFound: "That project isn't here.",
+    backToWork: "Back to work",
+    contactHeading: "Let's talk.",
+    contactIntro: "Have a project in mind, or just want to say hi? Send a note and I'll get back to you within a day or two.",
+    socialInstagram: "Instagram",
+    socialLinkedin: "LinkedIn",
+    formName: "Name",
+    formEmail: "Email",
+    formMessage: "Message",
+    formSend: "Send",
+    formSendHover: "Render →",
+    formSending: "Sending…",
+    formThanks: "Rendered ✓ Thanks, I'll get back to you soon.",
+    formError: "Something went wrong. Email me instead at {email}",
+  },
 };
 
 const projects = [

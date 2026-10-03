@@ -4,6 +4,7 @@
 (function () {
   const $ = (sel, root = document) => root.querySelector(sel);
   const page = document.body.dataset.page;
+  const T = (key, fallback) => ((site.text || {})[key] ?? fallback);
 
   // Cache-busting: tools/publish.sh stamps ?v=<timestamp> on the script tags.
   // We reuse that stamp on local asset URLs so browsers fetch fresh tiles and
@@ -22,9 +23,9 @@
       header.innerHTML = `
         <a class="brand" href="index.html">${site.fullName}</a>
         <nav class="nav" aria-label="Main">
-          <a href="index.html" ${page === "home" || page === "project" ? 'aria-current="page"' : ""}>Work</a>
-          <a href="about.html" ${page === "about" ? 'aria-current="page"' : ""}>About</a>
-          <a href="contact.html" ${page === "contact" ? 'aria-current="page"' : ""}>Contact</a>
+          <a href="index.html" ${page === "home" || page === "project" ? 'aria-current="page"' : ""}>${T("navWork", "Work")}</a>
+          <a href="about.html" ${page === "about" ? 'aria-current="page"' : ""}>${T("navAbout", "About")}</a>
+          <a href="contact.html" ${page === "contact" ? 'aria-current="page"' : ""}>${T("navContact", "Contact")}</a>
         </nav>`;
     }
     const footer = $("#site-footer");
@@ -32,11 +33,16 @@
       footer.innerHTML = `
         <div>© ${new Date().getFullYear()} ${site.fullName}</div>
         <div class="links">
-          <a href="mailto:${site.email}">Email</a>
-          <a href="${site.instagram}" target="_blank" rel="noopener">Instagram</a>
-          <a href="${site.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:${site.email}">${T("footerEmail", "Email")}</a>
+          <a href="${site.instagram}" target="_blank" rel="noopener">${T("footerInstagram", "Instagram")}</a>
+          <a href="${site.linkedin}" target="_blank" rel="noopener">${T("footerLinkedin", "LinkedIn")}</a>
         </div>`;
     }
+    // static pages: any element with data-text="key" shows that interface string
+    document.querySelectorAll("[data-text]").forEach((el) => {
+      const v = (site.text || {})[el.dataset.text];
+      if (v != null) el.textContent = v;
+    });
     document.querySelectorAll("[data-site]").forEach((el) => {
       const key = el.dataset.site;
       if (key in site) {
@@ -204,7 +210,7 @@
     const p = projects[index];
 
     if (!p) {
-      root.innerHTML = `<div class="notfound">That project isn't here. <a href="index.html">Back to work</a></div>`;
+      root.innerHTML = `<div class="notfound">${T("notFound", "That project isn't here.")} <a href="index.html">${T("backToWork", "Back to work")}</a></div>`;
       return;
     }
 
@@ -216,9 +222,9 @@
       <header class="project-head">
         <h1 class="project-title">${p.title}</h1>
         <dl class="project-meta">
-          ${p.client ? `<dt>Client</dt><dd>${p.client}</dd>` : ""}
-          ${p.role ? `<dt>Role</dt><dd>${p.role}</dd>` : ""}
-          ${p.year ? `<dt>Year</dt><dd>${p.year}</dd>` : ""}
+          ${p.client ? `<dt>${T("metaClient", "Client")}</dt><dd>${p.client}</dd>` : ""}
+          ${p.role ? `<dt>${T("metaRole", "Role")}</dt><dd>${p.role}</dd>` : ""}
+          ${p.year ? `<dt>${T("metaYear", "Year")}</dt><dd>${p.year}</dd>` : ""}
         </dl>
       </header>
 
@@ -233,8 +239,8 @@
       ${(p.gallery || []).length ? `<section class="gallery">${p.gallery.map(galleryItem).join("")}</section>` : ""}
 
       <nav class="project-nav" aria-label="More projects">
-        <a href="project.html?p=${prev.slug}"><span class="label">← Previous</span><span class="title">${prev.title}</span></a>
-        <a href="project.html?p=${next.slug}"><span class="label">Next →</span><span class="title">${next.title}</span></a>
+        <a href="project.html?p=${prev.slug}"><span class="label">${T("prev", "← Previous")}</span><span class="title">${prev.title}</span></a>
+        <a href="project.html?p=${next.slug}"><span class="label">${T("next", "Next →")}</span><span class="title">${next.title}</span></a>
       </nav>`;
 
     wireAutoplayLoops(root);
@@ -263,7 +269,7 @@
       }
 
       btn.disabled = true;
-      note.textContent = "Sending…";
+      note.textContent = T("formSending", "Sending…");
       try {
         const res = await fetch(site.formEndpoint, {
           method: "POST",
@@ -272,9 +278,9 @@
         });
         if (!res.ok) throw new Error(res.statusText);
         form.reset();
-        note.textContent = "Rendered ✓ Thanks, I'll get back to you soon.";
+        note.textContent = T("formThanks", "Thanks, I'll get back to you soon.");
       } catch (err) {
-        note.textContent = `Something went wrong. Email me instead at ${site.email}`;
+        note.textContent = T("formError", "Something went wrong. Email me instead at {email}").replace("{email}", site.email);
       } finally {
         btn.disabled = false;
       }

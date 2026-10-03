@@ -22,8 +22,10 @@
   nav.tabs button.on { color:var(--ink); border-color:var(--ink); }
   section.tab { display:none; } section.tab.on { display:block; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:20px; margin-bottom:16px; }
-  .card h2 { font-size:22px; font-weight:600; margin:0 0 14px; }
+  .card h2 { font-size:22px; font-weight:600; margin:0 0 4px; }
+  .card .where { color:var(--muted); font-size:13px; margin:0 0 14px; }
   label { display:block; margin:12px 0 6px; } label .mono { display:block; margin-bottom:6px; }
+  label .mono em { font-style:normal; text-transform:none; letter-spacing:0; color:#6a6a6a; }
   input[type=text], textarea, select { width:100%; font: 15px/1.5 "Source Serif 4", Georgia, serif; color:var(--ink); background:#0c0c0c; border:1px solid var(--line); border-radius:6px; padding:10px 12px; outline:none; }
   input[type=text]:focus, textarea:focus, select:focus { border-color:var(--accent); }
   textarea { min-height: 90px; resize: vertical; }
@@ -35,6 +37,8 @@
   .projhead h2 { flex:1; margin:0; }
   .order { display:flex; gap:4px; }
   details.proj-details > summary { cursor:pointer; list-style:none; } details.proj-details > summary::-webkit-details-marker { display:none; }
+  .gal { display:grid; grid-template-columns: 120px 1fr; gap:10px 12px; align-items:center; margin-top:8px; }
+  .gal img, .gal video { width:120px; aspect-ratio:16/9; object-fit:cover; border-radius:4px; background:#000; }
   .status { position: fixed; left:0; right:0; bottom:0; padding:12px 24px; background:#0c0c0c; border-top:1px solid var(--line); display:flex; gap:16px; align-items:center; font-family:"DM Mono", monospace; font-size:12px; letter-spacing:.04em; }
   .dot { width:8px; height:8px; border-radius:50%; background:var(--muted); display:inline-block; margin-right:8px; }
   .dot.ok { background:var(--ok); } .dot.warn { background:var(--warn); } .dot.bad { background:var(--bad); }
@@ -54,50 +58,144 @@
 
 <main>
   <nav class="tabs">
-    <button class="on" data-tab="home">Home</button>
-    <button data-tab="projects">Projects</button>
+    <button class="on" data-tab="info">Info &amp; credits</button>
+    <button data-tab="home">Home</button>
+    <button data-tab="projects">Projects (everything)</button>
     <button data-tab="about">About</button>
     <button data-tab="contact">Contact</button>
+    <button data-tab="texts">Menu, footer &amp; buttons</button>
+    <button data-tab="pages">Browser tab titles</button>
   </nav>
 
-  <section class="tab on" id="tab-home">
+  <!-- INFO & CREDITS -->
+  <section class="tab on" id="tab-info">
+    <div class="hint" style="margin-bottom:12px">Each project's description and credits, as shown under its video. Edit, then press <b>Save + Publish</b> at the top.</div>
+    <div id="info"></div>
+  </section>
+
+  <!-- HOME -->
+  <section class="tab" id="tab-home">
     <div class="card">
-      <h2>Headline</h2>
-      <label><span class="mono">Line 1</span><input type="text" id="headline1"></label>
-      <label><span class="mono">Line 2</span><input type="text" id="headline2"><div class="hint">A “+” in this line gets the turning-plus animation.</div></label>
-      <label><span class="mono">Tagline</span><textarea id="tagline"></textarea></label>
+      <h2>Big headline</h2>
+      <p class="where">Home page, top left, the large two-line serif title.</p>
+      <label><span class="mono">Line 1 <em>· currently “I'm Ran Daskal.”</em></span><input type="text" id="headline1"></label>
+      <label><span class="mono">Line 2 <em>· currently “Art Director + Motion Expert.”</em></span><input type="text" id="headline2"><div class="hint">A “+” in this line gets the turning-plus animation.</div></label>
+    </div>
+    <div class="card">
+      <h2>Tagline</h2>
+      <p class="where">Home page, the small monospace sentence under the headline.</p>
+      <label><textarea id="tagline"></textarea></label>
+    </div>
+    <div class="card">
+      <h2>Name in the header</h2>
+      <p class="where">Top-left of every page, and in the copyright line of the footer.</p>
+      <label><input type="text" id="fullName"></label>
     </div>
   </section>
 
+  <!-- PROJECTS -->
   <section class="tab" id="tab-projects">
-    <div class="hint" style="margin-bottom:12px">Use ▲ ▼ to reorder the home grid (left to right, row by row). Click a title to open its fields. Tile images are cropped to 4:3.</div>
+    <div class="hint" style="margin-bottom:12px">The home grid, left to right, row by row. ▲ ▼ reorder. Click a title to open everything shown on that project's page. Tile images are cropped to 4:3.</div>
     <div id="projects"></div>
   </section>
 
+  <!-- ABOUT -->
   <section class="tab" id="tab-about">
     <div class="card">
-      <h2>About</h2>
-      <label><span class="mono">Heading</span><input type="text" id="aboutHeading"></label>
-      <label><span class="mono">Paragraphs</span><textarea id="aboutParas" style="min-height:220px"></textarea><div class="hint">One paragraph per block, blank line between paragraphs.</div></label>
+      <h2>About page</h2>
+      <p class="where">randaskal.com/about.html — text to the right of the portrait.</p>
+      <label><span class="mono">Heading <em>· the big title, e.g. “Hey, I'm Ran.”</em></span><input type="text" id="aboutHeading"></label>
+      <label><span class="mono">Paragraphs <em>· the bio text under the heading</em></span><textarea id="aboutParas" style="min-height:220px"></textarea><div class="hint">One paragraph per block, blank line between paragraphs.</div></label>
+    </div>
+    <div class="card">
+      <h2>Clients list</h2>
+      <p class="where">About page, under the bio, left column.</p>
       <div class="row">
-        <label><span class="mono">List heading</span><input type="text" id="clientsHeading"></label>
-        <label><span class="mono">Clients (one per line)</span><textarea id="clients"></textarea></label>
+        <label><span class="mono">List heading <em>· e.g. “Selected clients”</em></span><input type="text" id="clientsHeading"></label>
+        <label><span class="mono">Names <em>· one per line</em></span><textarea id="clients"></textarea></label>
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section class="tab" id="tab-contact">
     <div class="card">
-      <h2>Contact &amp; footer</h2>
+      <h2>Contact page — left side</h2>
+      <p class="where">randaskal.com/contact.html — heading, intro sentence, email, location and the two social links.</p>
+      <label><span class="mono">Heading <em>· e.g. “Let's talk.”</em></span><input type="text" id="t_contactHeading"></label>
+      <label><span class="mono">Intro sentence</span><textarea id="t_contactIntro"></textarea></label>
       <div class="row">
-        <label><span class="mono">Full name (header &amp; footer)</span><input type="text" id="fullName"></label>
-        <label><span class="mono">Email</span><input type="text" id="email"></label>
-        <label><span class="mono">Location</span><input type="text" id="location"></label>
-        <label><span class="mono">Instagram URL</span><input type="text" id="instagram"></label>
-        <label><span class="mono">LinkedIn URL</span><input type="text" id="linkedin"></label>
-        <label><span class="mono">Form endpoint (Formspree)</span><input type="text" id="formEndpoint"></label>
+        <label><span class="mono">Email address <em>· shown as the big link</em></span><input type="text" id="email"></label>
+        <label><span class="mono">Location line</span><input type="text" id="location"></label>
+        <label><span class="mono">Instagram link (URL)</span><input type="text" id="instagram"></label>
+        <label><span class="mono">Instagram label <em>· the word next to the icon</em></span><input type="text" id="t_socialInstagram"></label>
+        <label><span class="mono">LinkedIn link (URL)</span><input type="text" id="linkedin"></label>
+        <label><span class="mono">LinkedIn label</span><input type="text" id="t_socialLinkedin"></label>
       </div>
     </div>
+    <div class="card">
+      <h2>Contact page — the form</h2>
+      <p class="where">Field labels, the button, and the messages shown after pressing it.</p>
+      <div class="row3">
+        <label><span class="mono">Name field label</span><input type="text" id="t_formName"></label>
+        <label><span class="mono">Email field label</span><input type="text" id="t_formEmail"></label>
+        <label><span class="mono">Message field label</span><input type="text" id="t_formMessage"></label>
+      </div>
+      <div class="row">
+        <label><span class="mono">Button text</span><input type="text" id="t_formSend"></label>
+        <label><span class="mono">Button text on hover</span><input type="text" id="t_formSendHover"></label>
+        <label><span class="mono">While sending</span><input type="text" id="t_formSending"></label>
+        <label><span class="mono">After success</span><input type="text" id="t_formThanks"></label>
+      </div>
+      <label><span class="mono">If sending fails <em>· {email} is replaced by your address</em></span><input type="text" id="t_formError"></label>
+      <label><span class="mono">Form endpoint <em>· Formspree address; leave as is to fall back to the visitor's email app</em></span><input type="text" id="formEndpoint"></label>
+    </div>
+  </section>
+
+  <!-- TEXTS -->
+  <section class="tab" id="tab-texts">
+    <div class="card">
+      <h2>Top menu</h2>
+      <p class="where">The three links at the top right of every page.</p>
+      <div class="row3">
+        <label><span class="mono">Link to home / work</span><input type="text" id="t_navWork"></label>
+        <label><span class="mono">Link to About</span><input type="text" id="t_navAbout"></label>
+        <label><span class="mono">Link to Contact</span><input type="text" id="t_navContact"></label>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Footer</h2>
+      <p class="where">Bottom of every page: “© year Name” on the left (name comes from the Home tab), these three links on the right.</p>
+      <div class="row3">
+        <label><span class="mono">Email link</span><input type="text" id="t_footerEmail"></label>
+        <label><span class="mono">Instagram link</span><input type="text" id="t_footerInstagram"></label>
+        <label><span class="mono">LinkedIn link</span><input type="text" id="t_footerLinkedin"></label>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Project pages — small labels</h2>
+      <p class="where">The uppercase labels under a project title, and the previous/next links at the bottom.</p>
+      <div class="row3">
+        <label><span class="mono">Client label</span><input type="text" id="t_metaClient"></label>
+        <label><span class="mono">Role label</span><input type="text" id="t_metaRole"></label>
+        <label><span class="mono">Year label</span><input type="text" id="t_metaYear"></label>
+      </div>
+      <div class="row">
+        <label><span class="mono">Previous link</span><input type="text" id="t_prev"></label>
+        <label><span class="mono">Next link</span><input type="text" id="t_next"></label>
+        <label><span class="mono">Message for a missing project</span><input type="text" id="t_notFound"></label>
+        <label><span class="mono">…and its link back</span><input type="text" id="t_backToWork"></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGES -->
+  <section class="tab" id="tab-pages">
+    <div class="hint" style="margin-bottom:12px">What the browser tab says, and the one-line description Google shows under the link. Project pages set their own tab title from the project name.</div>
+    <div class="card"><h2>Home</h2><label><span class="mono">Tab title</span><input type="text" id="pg_home_title"></label><label><span class="mono">Search description</span><input type="text" id="pg_home_description"></label></div>
+    <div class="card"><h2>About</h2><label><span class="mono">Tab title</span><input type="text" id="pg_about_title"></label><label><span class="mono">Search description</span><input type="text" id="pg_about_description"></label></div>
+    <div class="card"><h2>Contact</h2><label><span class="mono">Tab title</span><input type="text" id="pg_contact_title"></label><label><span class="mono">Search description</span><input type="text" id="pg_contact_description"></label></div>
+    <div class="card"><h2>Project pages (while loading)</h2><label><span class="mono">Tab title</span><input type="text" id="pg_project_title"></label></div>
   </section>
 </main>
 
@@ -106,6 +204,9 @@
 <script>
 let D = null, dirty = false;
 const $ = (s, r=document) => r.querySelector(s);
+const TEXT_KEYS = ['navWork','navAbout','navContact','footerEmail','footerInstagram','footerLinkedin','metaClient','metaRole','metaYear','prev','next','notFound','backToWork','contactHeading','contactIntro','socialInstagram','socialLinkedin','formName','formEmail','formMessage','formSend','formSendHover','formSending','formThanks','formError'];
+const SITE_KEYS = ['fullName','email','location','instagram','linkedin','formEndpoint'];
+const PAGE_KEYS = {home:['title','description'], about:['title','description'], contact:['title','description'], project:['title']};
 const setDirty = (v) => { dirty = v; document.body.classList.toggle('dirty', v); };
 document.addEventListener('input', () => setDirty(true));
 window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
@@ -124,22 +225,29 @@ function status(kind, text, log) {
 async function load() {
   const r = await fetch('/api/content'); D = await r.json();
   if (D.error) { status('bad', 'Could not read site files', D.error); return; }
+  D.site.text = D.site.text || {};
   $('#headline1').value = D.home.headline1; $('#headline2').value = D.home.headline2; $('#tagline').value = D.site.tagline;
   $('#aboutHeading').value = D.about.heading; $('#aboutParas').value = D.about.paragraphs.join('\n\n');
   $('#clientsHeading').value = D.about.clientsHeading; $('#clients').value = D.about.clients.join('\n');
-  for (const k of ['fullName','email','location','instagram','linkedin','formEndpoint']) $('#'+k).value = D.site[k] || '';
-  renderProjects();
+  for (const k of SITE_KEYS) $('#'+k).value = D.site[k] || '';
+  for (const k of TEXT_KEYS) { const el = $('#t_'+k); if (el) el.value = D.site.text[k] ?? ''; }
+  for (const [pg, keys] of Object.entries(PAGE_KEYS)) for (const k of keys) { const el = $(`#pg_${pg}_${k}`); if (el) el.value = (D.pages?.[pg]?.[k]) ?? ''; }
+  renderProjects(); renderInfo();
   status(D.build === 'built' ? 'ok' : D.build === 'errored' ? 'bad' : 'warn', 'Live site build: ' + D.build, '');
   setDirty(false);
 }
 
 function heroKind(h) { return h.vimeo ? 'vimeo' : h.youtube ? 'youtube' : 'file'; }
 function heroId(h) { return h.vimeo || h.youtube || ''; }
+function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
 
 function renderProjects() {
   const root = $('#projects'); root.innerHTML = '';
   D.projects.forEach((p, i) => {
     const el = document.createElement('div'); el.className = 'card';
+    const gal = (p.gallery || []).map((g, gi) => `
+        <${g.type === 'video' ? 'video muted' : 'img'} src="/${g.src}?t=${Date.now()}"></${g.type === 'video' ? 'video' : 'img'}>
+        <label style="margin:0"><span class="mono">Item ${gi+1} caption <em>· ${g.type}${g.span === 2 ? ', full width' : ''}</em></span><input type="text" data-gal="${gi}" value="${esc(g.caption || '')}"></label>`).join('');
     el.innerHTML = `
       <details class="proj-details">
         <summary>
@@ -157,17 +265,18 @@ function renderProjects() {
           <div>
             <img class="thumb" src="${/^https?:/.test(p.thumb)?p.thumb:'/'+p.thumb}?t=${Date.now()}" alt="">
             <label class="hint" style="margin-top:8px">Replace tile image<br><input type="file" accept="image/*" data-tile></label>
-            ${p.loop ? '<div class="hint">This tile plays an animated loop; the image above is its first frame.</div>' : ''}
+            ${p.loop ? '<div class="hint">This tile plays an animated loop on the home page; the image above is its first frame. To change the loop, send Claude a new GIF.</div>' : ''}
+            <div class="hint" style="margin-top:10px">Page: <a href="https://randaskal.com/project.html?p=${p.slug}" target="_blank" rel="noopener">project.html?p=${p.slug}</a></div>
           </div>
           <div>
             <div class="row3">
-              <label><span class="mono">Title</span><input type="text" data-k="title" value="${esc(p.title)}"></label>
-              <label><span class="mono">Client</span><input type="text" data-k="client" value="${esc(p.client||'')}"></label>
-              <label><span class="mono">Year</span><input type="text" data-k="year" value="${esc(p.year||'')}"></label>
+              <label><span class="mono">Title <em>· on the tile and as the page heading</em></span><input type="text" data-k="title" value="${esc(p.title)}"></label>
+              <label><span class="mono">Client <em>· small label on tile + page</em></span><input type="text" data-k="client" value="${esc(p.client||'')}"></label>
+              <label><span class="mono">Year <em>· page only, hidden if empty</em></span><input type="text" data-k="year" value="${esc(p.year||'')}"></label>
             </div>
-            <label><span class="mono">Role</span><input type="text" data-k="role" value="${esc(p.role||'')}"></label>
+            <label><span class="mono">Role <em>· page only, hidden if empty</em></span><input type="text" data-k="role" value="${esc(p.role||'')}"></label>
             <div class="row">
-              <label><span class="mono">Main video</span>
+              <label><span class="mono">Main video <em>· the big player</em></span>
                 <select data-herokind>
                   <option value="vimeo" ${heroKind(p.hero)==='vimeo'?'selected':''}>Vimeo ID</option>
                   <option value="youtube" ${heroKind(p.hero)==='youtube'?'selected':''}>YouTube ID</option>
@@ -176,9 +285,9 @@ function renderProjects() {
               <label><span class="mono">ID (Vimeo / YouTube)</span><input type="text" data-heroid value="${esc(heroId(p.hero))}" ${heroKind(p.hero)==='file'?'disabled':''}>
                 <div class="hint">For a video file, send the file to Claude; it is encoded and placed for you.</div></label>
             </div>
-            <label><span class="mono">Description</span><textarea data-k="description">${esc((p.description||[]).join('\n\n'))}</textarea><div class="hint">Blank line between paragraphs. Leave empty to hide.</div></label>
-            <label><span class="mono">Credits (one per line, “Role — Name”)</span><textarea data-k="credits">${esc((p.credits||[]).join('\n'))}</textarea></label>
-            <div class="hint">Page address: randaskal.com/project.html?p=${p.slug} · Gallery items: ${(p.gallery||[]).length} (managed via the Dropbox PROCESS folder)</div>
+            <label><span class="mono">Description <em>· paragraph(s) under the player, right side</em></span><textarea data-k="description">${esc((p.description||[]).join('\n\n'))}</textarea><div class="hint">Blank line between paragraphs. Leave empty to hide.</div></label>
+            <label><span class="mono">Credits <em>· under the player, left column · one per line, “Role — Name”</em></span><textarea data-k="credits">${esc((p.credits||[]).join('\n'))}</textarea></label>
+            ${gal ? `<div class="mono" style="margin-top:14px">Gallery captions <em>· the small text under each process item</em></div><div class="gal">${gal}</div>` : '<div class="hint" style="margin-top:12px">No process gallery yet. Add files to the Dropbox PROCESS folder for this project, then ask Claude to ingest them.</div>'}
           </div>
         </div>
       </details>`;
@@ -188,17 +297,44 @@ function renderProjects() {
     root.appendChild(el);
   });
 }
-function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
 
-function move(i, d) { collect(); const j = i + d; [D.projects[i], D.projects[j]] = [D.projects[j], D.projects[i]]; renderProjects(); setDirty(true); }
+function renderInfo() {
+  const root = $('#info'); root.innerHTML = '';
+  D.projects.forEach((p, i) => {
+    const el = document.createElement('div'); el.className = 'card';
+    el.innerHTML = `
+      <div class="projhead"><span class="mono">${String(i+1).padStart(2,'0')}</span><h2>${esc(p.title)}</h2><span class="mono">${esc(p.client||'')}</span></div>
+      <div class="row">
+        <label><span class="mono">Info <em>· paragraph(s) under the video · blank line between paragraphs</em></span><textarea data-info="description" style="min-height:120px">${esc((p.description||[]).join('\n\n'))}</textarea></label>
+        <label><span class="mono">Credits <em>· one per line, “Role — Name”</em></span><textarea data-info="credits" style="min-height:120px">${esc((p.credits||[]).join('\n'))}</textarea></label>
+      </div>`;
+    // keep the two tabs in sync: typing here updates the data, and the Projects tab re-renders from it
+    el.querySelectorAll('[data-info]').forEach(t => t.addEventListener('input', () => {
+      if (t.dataset.info === 'description') p.description = t.value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
+      else p.credits = t.value.split('\n').map(x=>x.trim()).filter(Boolean);
+      syncProjectsFromData(p);
+    }));
+    root.appendChild(el);
+  });
+}
+function syncProjectsFromData(p) {
+  const i = D.projects.indexOf(p); const card = document.querySelectorAll('#projects .card')[i]; if (!card) return;
+  const d = card.querySelector('[data-k=description]'), c = card.querySelector('[data-k=credits]');
+  if (d) d.value = (p.description||[]).join('\n\n'); if (c) c.value = (p.credits||[]).join('\n');
+}
+
+function move(i, d) { collect(); const j = i + d; [D.projects[i], D.projects[j]] = [D.projects[j], D.projects[i]]; renderProjects(); renderInfo(); setDirty(true); }
 
 function collect() {
   D.home = { headline1: $('#headline1').value, headline2: $('#headline2').value };
   D.site.tagline = $('#tagline').value;
   D.about = { heading: $('#aboutHeading').value, paragraphs: $('#aboutParas').value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean),
               clientsHeading: $('#clientsHeading').value, clients: $('#clients').value.split('\n').map(s=>s.trim()).filter(Boolean) };
-  for (const k of ['fullName','email','location','instagram','linkedin','formEndpoint']) D.site[k] = $('#'+k).value.trim();
+  for (const k of SITE_KEYS) D.site[k] = $('#'+k).value.trim();
   D.site.name = (D.site.fullName || '').split(' ')[0] || D.site.name;
+  for (const k of TEXT_KEYS) { const el = $('#t_'+k); if (el) D.site.text[k] = el.value; }
+  D.pages = D.pages || {};
+  for (const [pg, keys] of Object.entries(PAGE_KEYS)) { D.pages[pg] = D.pages[pg] || {}; for (const k of keys) { const el = $(`#pg_${pg}_${k}`); if (el) D.pages[pg][k] = el.value.trim(); } }
   document.querySelectorAll('#projects .card').forEach((el, i) => {
     const p = D.projects[i];
     el.querySelectorAll('[data-k]').forEach(inp => {
@@ -207,6 +343,7 @@ function collect() {
       else if (k === 'credits') p.credits = v.split('\n').map(s=>s.trim()).filter(Boolean);
       else p[k] = v.trim();
     });
+    el.querySelectorAll('[data-gal]').forEach(inp => { const g = p.gallery[+inp.dataset.gal]; if (g) g.caption = inp.value.trim(); });
     const kind = el.querySelector('[data-herokind]').value, id = el.querySelector('[data-heroid]').value.trim();
     if (kind === 'vimeo' && id) p.hero = { vimeo: id.replace(/\D/g,'') };
     else if (kind === 'youtube' && id) p.hero = { youtube: id.replace(/^.*(?:v=|youtu\.be\/)/,'').split(/[?&]/)[0] };
@@ -226,8 +363,8 @@ async function save() {
 async function publishNow() {
   if (!(await save())) return;
   $('#publish').disabled = true; $('#save').disabled = true;
-  status('warn', 'Publishing… GitHub usually takes about a minute.', '');
   const msg = prompt('Short note for this publish (optional):', 'Text update') ?? 'Text update';
+  status('warn', 'Publishing… GitHub usually takes about a minute.', '');
   const r = await fetch('/api/publish', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ message: msg }) });
   const j = await r.json();
   $('#publish').disabled = false; $('#save').disabled = false;
