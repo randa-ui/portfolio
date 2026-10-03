@@ -12,7 +12,7 @@ js/main.js      Renders the grid / project pages, form
 js/fx.js        The fun layer: keyframe cursor, text entrances, render bar, layer box
 css/style.css   Styles (colours + fonts are tokens at the top; FX styles at the bottom)
 assets/         thumbs/ (tiles + posters), videos/ (films + tile loops), gallery/<slug>/ (process items)
-tools/          ingest-video.sh (film → web encode), ingest-process.sh (Dropbox PROCESS folder → gallery+credits), publish.sh
+tools/          editor.py + editor.html (Site Editor), ingest-video.sh, ingest-process.sh, publish.sh
 ```
 
 ## Preview locally
@@ -24,6 +24,12 @@ python3 -m http.server 8765
 ```
 
 then open http://localhost:8765. (Opening `index.html` directly from Finder also works, but some browsers block hover-video on `file://`.)
+
+## Editing text yourself: the Site Editor
+
+Double-click **Site Editor.command** on the Desktop. A page opens at http://localhost:8777 with plain fields for everything textual: home headline and tagline, every project's title/client/role/year/description/credits and main video ID, the About page, and contact details. You can reorder the home grid with ▲▼ and replace any tile image (cropped to 4:3). **Save** writes the files; **Save + Publish** also pushes to GitHub and waits for the build, showing the result in the bar at the bottom. Close the black terminal window to stop the editor.
+
+Not in the editor (ask Claude or use the scripts below): adding or removing a project, main-video files, animated tiles, process galleries.
 
 ## Adding a project
 
