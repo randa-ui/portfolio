@@ -30,8 +30,7 @@ const site = {
   name: "Ran",
   fullName: "Ran Daskal",
   role: "Art director + motion expert",
-  tagline:
-    "I specialize in delivering creative solutions across the entire production pipeline, from concept development to final delivery.",
+  tagline: "I specialize in delivering creative solutions across the entire production pipeline, from concept development to final delivery.",
   email: "randaskal@gmail.com",
   location: "Tel Aviv, Israel",
   instagram: "https://www.instagram.com/randaskal/",
@@ -50,12 +49,13 @@ const projects = [
     year: "2026",
     thumb: "assets/thumbs/showreel.jpg",
     preview: "",
-    // showreel-hero.mp4 is a web-sized encode of Showreel25.mp4 (the 227 MB master is too heavy to serve)
     hero: { video: "assets/videos/showreel-hero.mp4", poster: "assets/thumbs/showreel-hero.jpg" },
     description: [
       "A minute of selected work: brand films, product motion, character pieces and live-action compositing.",
     ],
-    credits: ["Direction & animation — Ran Daskal"],
+    credits: [
+      "Direction & animation — Ran Daskal",
+    ],
     gallery: [],
   },
   {

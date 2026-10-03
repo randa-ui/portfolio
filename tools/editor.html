@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Editor — randaskal.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0f0f; --panel:#161616; --ink:#f2f2f2; --muted:#8f8f8f; --line:#2a2a2a; --ok:#00c875; --warn:#ffcb00; --bad:#e2445c; --accent:#9450fd; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font: 15px/1.5 "Source Serif 4", Georgia, serif; }
+  header { position: sticky; top:0; z-index:5; display:flex; align-items:center; gap:16px; padding:14px 24px; background:rgba(15,15,15,.92); backdrop-filter: blur(8px); border-bottom:1px solid var(--line); }
+  header h1 { font-size:18px; font-weight:600; margin:0; flex:1; }
+  .mono { font-family:"DM Mono", monospace; font-size:12px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+  button { font: 500 12px/1 "DM Mono", monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--bg); background:var(--ink); border:1px solid var(--ink); border-radius:999px; padding:11px 18px; cursor:pointer; }
+  button.ghost { background:transparent; color:var(--ink); }
+  button.small { padding:7px 12px; font-size:11px; }
+  button:disabled { opacity:.45; cursor:default; }
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 24px 120px; }
+  nav.tabs { display:flex; gap:6px; margin-bottom:24px; flex-wrap:wrap; }
+  nav.tabs button { background:transparent; color:var(--muted); border-color:var(--line); }
+  nav.tabs button.on { color:var(--ink); border-color:var(--ink); }
+  section.tab { display:none; } section.tab.on { display:block; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:20px; margin-bottom:16px; }
+  .card h2 { font-size:22px; font-weight:600; margin:0 0 14px; }
+  label { display:block; margin:12px 0 6px; } label .mono { display:block; margin-bottom:6px; }
+  input[type=text], textarea, select { width:100%; font: 15px/1.5 "Source Serif 4", Georgia, serif; color:var(--ink); background:#0c0c0c; border:1px solid var(--line); border-radius:6px; padding:10px 12px; outline:none; }
+  input[type=text]:focus, textarea:focus, select:focus { border-color:var(--accent); }
+  textarea { min-height: 90px; resize: vertical; }
+  .row { display:grid; grid-template-columns: 1fr 1fr; gap: 0 16px; } .row3 { display:grid; grid-template-columns: 2fr 1fr 1fr; gap:0 16px; }
+  .hint { color:var(--muted); font-size:13px; margin-top:4px; }
+  .proj { display:grid; grid-template-columns: 180px 1fr; gap:20px; }
+  .thumb { aspect-ratio:4/3; width:100%; object-fit:cover; border-radius:6px; background:#000; display:block; }
+  .projhead { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .projhead h2 { flex:1; margin:0; }
+  .order { display:flex; gap:4px; }
+  details.proj-details > summary { cursor:pointer; list-style:none; } details.proj-details > summary::-webkit-details-marker { display:none; }
+  .status { position: fixed; left:0; right:0; bottom:0; padding:12px 24px; background:#0c0c0c; border-top:1px solid var(--line); display:flex; gap:16px; align-items:center; font-family:"DM Mono", monospace; font-size:12px; letter-spacing:.04em; }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--muted); display:inline-block; margin-right:8px; }
+  .dot.ok { background:var(--ok); } .dot.warn { background:var(--warn); } .dot.bad { background:var(--bad); }
+  .status .log { flex:1; color:var(--muted); white-space:pre-wrap; max-height:3.2em; overflow:auto; }
+  .dirty header h1::after { content:" •"; color:var(--warn); }
+  a { color: var(--ink); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Site Editor <span class="mono">randaskal.com</span></h1>
+  <a class="mono" href="https://randaskal.com" target="_blank" rel="noopener">Open site ↗</a>
+  <button class="ghost" id="reload">Reload</button>
+  <button id="save">Save</button>
+  <button id="publish">Save + Publish</button>
+</header>
+
+<main>
+  <nav class="tabs">
+    <button class="on" data-tab="home">Home</button>
+    <button data-tab="projects">Projects</button>
+    <button data-tab="about">About</button>
+    <button data-tab="contact">Contact</button>
+  </nav>
+
+  <section class="tab on" id="tab-home">
+    <div class="card">
+      <h2>Headline</h2>
+      <label><span class="mono">Line 1</span><input type="text" id="headline1"></label>
+      <label><span class="mono">Line 2</span><input type="text" id="headline2"><div class="hint">A “+” in this line gets the turning-plus animation.</div></label>
+      <label><span class="mono">Tagline</span><textarea id="tagline"></textarea></label>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-projects">
+    <div class="hint" style="margin-bottom:12px">Use ▲ ▼ to reorder the home grid (left to right, row by row). Click a title to open its fields. Tile images are cropped to 4:3.</div>
+    <div id="projects"></div>
+  </section>
+
+  <section class="tab" id="tab-about">
+    <div class="card">
+      <h2>About</h2>
+      <label><span class="mono">Heading</span><input type="text" id="aboutHeading"></label>
+      <label><span class="mono">Paragraphs</span><textarea id="aboutParas" style="min-height:220px"></textarea><div class="hint">One paragraph per block, blank line between paragraphs.</div></label>
+      <div class="row">
+        <label><span class="mono">List heading</span><input type="text" id="clientsHeading"></label>
+        <label><span class="mono">Clients (one per line)</span><textarea id="clients"></textarea></label>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-contact">
+    <div class="card">
+      <h2>Contact &amp; footer</h2>
+      <div class="row">
+        <label><span class="mono">Full name (header &amp; footer)</span><input type="text" id="fullName"></label>
+        <label><span class="mono">Email</span><input type="text" id="email"></label>
+        <label><span class="mono">Location</span><input type="text" id="location"></label>
+        <label><span class="mono">Instagram URL</span><input type="text" id="instagram"></label>
+        <label><span class="mono">LinkedIn URL</span><input type="text" id="linkedin"></label>
+        <label><span class="mono">Form endpoint (Formspree)</span><input type="text" id="formEndpoint"></label>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="status"><span class="dot" id="dot"></span><span id="buildText">…</span><div class="log" id="log"></div></div>
+
+<script>
+let D = null, dirty = false;
+const $ = (s, r=document) => r.querySelector(s);
+const setDirty = (v) => { dirty = v; document.body.classList.toggle('dirty', v); };
+document.addEventListener('input', () => setDirty(true));
+window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('on', x === b));
+  document.querySelectorAll('section.tab').forEach(s => s.classList.toggle('on', s.id === 'tab-' + b.dataset.tab));
+});
+
+function status(kind, text, log) {
+  $('#dot').className = 'dot ' + (kind || '');
+  $('#buildText').textContent = text || '';
+  if (log !== undefined) $('#log').textContent = log;
+}
+
+async function load() {
+  const r = await fetch('/api/content'); D = await r.json();
+  if (D.error) { status('bad', 'Could not read site files', D.error); return; }
+  $('#headline1').value = D.home.headline1; $('#headline2').value = D.home.headline2; $('#tagline').value = D.site.tagline;
+  $('#aboutHeading').value = D.about.heading; $('#aboutParas').value = D.about.paragraphs.join('\n\n');
+  $('#clientsHeading').value = D.about.clientsHeading; $('#clients').value = D.about.clients.join('\n');
+  for (const k of ['fullName','email','location','instagram','linkedin','formEndpoint']) $('#'+k).value = D.site[k] || '';
+  renderProjects();
+  status(D.build === 'built' ? 'ok' : D.build === 'errored' ? 'bad' : 'warn', 'Live site build: ' + D.build, '');
+  setDirty(false);
+}
+
+function heroKind(h) { return h.vimeo ? 'vimeo' : h.youtube ? 'youtube' : 'file'; }
+function heroId(h) { return h.vimeo || h.youtube || ''; }
+
+function renderProjects() {
+  const root = $('#projects'); root.innerHTML = '';
+  D.projects.forEach((p, i) => {
+    const el = document.createElement('div'); el.className = 'card';
+    el.innerHTML = `
+      <details class="proj-details">
+        <summary>
+          <div class="projhead">
+            <span class="mono">${String(i+1).padStart(2,'0')}</span>
+            <h2>${p.title || '(untitled)'}</h2>
+            <span class="mono">${p.client || ''}</span>
+            <span class="order">
+              <button class="small ghost" data-move="-1" ${i===0?'disabled':''}>▲</button>
+              <button class="small ghost" data-move="1" ${i===D.projects.length-1?'disabled':''}>▼</button>
+            </span>
+          </div>
+        </summary>
+        <div class="proj">
+          <div>
+            <img class="thumb" src="${/^https?:/.test(p.thumb)?p.thumb:'/'+p.thumb}?t=${Date.now()}" alt="">
+            <label class="hint" style="margin-top:8px">Replace tile image<br><input type="file" accept="image/*" data-tile></label>
+            ${p.loop ? '<div class="hint">This tile plays an animated loop; the image above is its first frame.</div>' : ''}
+          </div>
+          <div>
+            <div class="row3">
+              <label><span class="mono">Title</span><input type="text" data-k="title" value="${esc(p.title)}"></label>
+              <label><span class="mono">Client</span><input type="text" data-k="client" value="${esc(p.client||'')}"></label>
+              <label><span class="mono">Year</span><input type="text" data-k="year" value="${esc(p.year||'')}"></label>
+            </div>
+            <label><span class="mono">Role</span><input type="text" data-k="role" value="${esc(p.role||'')}"></label>
+            <div class="row">
+              <label><span class="mono">Main video</span>
+                <select data-herokind>
+                  <option value="vimeo" ${heroKind(p.hero)==='vimeo'?'selected':''}>Vimeo ID</option>
+                  <option value="youtube" ${heroKind(p.hero)==='youtube'?'selected':''}>YouTube ID</option>
+                  <option value="file" ${heroKind(p.hero)==='file'?'selected':''}>Video file on the site</option>
+                </select></label>
+              <label><span class="mono">ID (Vimeo / YouTube)</span><input type="text" data-heroid value="${esc(heroId(p.hero))}" ${heroKind(p.hero)==='file'?'disabled':''}>
+                <div class="hint">For a video file, send the file to Claude; it is encoded and placed for you.</div></label>
+            </div>
+            <label><span class="mono">Description</span><textarea data-k="description">${esc((p.description||[]).join('\n\n'))}</textarea><div class="hint">Blank line between paragraphs. Leave empty to hide.</div></label>
+            <label><span class="mono">Credits (one per line, “Role — Name”)</span><textarea data-k="credits">${esc((p.credits||[]).join('\n'))}</textarea></label>
+            <div class="hint">Page address: randaskal.com/project.html?p=${p.slug} · Gallery items: ${(p.gallery||[]).length} (managed via the Dropbox PROCESS folder)</div>
+          </div>
+        </div>
+      </details>`;
+    el.querySelectorAll('[data-move]').forEach(b => b.onclick = (e) => { e.preventDefault(); move(i, +b.dataset.move); });
+    el.querySelector('[data-herokind]').onchange = (e) => { el.querySelector('[data-heroid]').disabled = e.target.value === 'file'; };
+    el.querySelector('[data-tile]').onchange = (e) => uploadTile(p.slug, e.target.files[0], el);
+    root.appendChild(el);
+  });
+}
+function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+function move(i, d) { collect(); const j = i + d; [D.projects[i], D.projects[j]] = [D.projects[j], D.projects[i]]; renderProjects(); setDirty(true); }
+
+function collect() {
+  D.home = { headline1: $('#headline1').value, headline2: $('#headline2').value };
+  D.site.tagline = $('#tagline').value;
+  D.about = { heading: $('#aboutHeading').value, paragraphs: $('#aboutParas').value.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean),
+              clientsHeading: $('#clientsHeading').value, clients: $('#clients').value.split('\n').map(s=>s.trim()).filter(Boolean) };
+  for (const k of ['fullName','email','location','instagram','linkedin','formEndpoint']) D.site[k] = $('#'+k).value.trim();
+  D.site.name = (D.site.fullName || '').split(' ')[0] || D.site.name;
+  document.querySelectorAll('#projects .card').forEach((el, i) => {
+    const p = D.projects[i];
+    el.querySelectorAll('[data-k]').forEach(inp => {
+      const k = inp.dataset.k, v = inp.value;
+      if (k === 'description') p.description = v.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+      else if (k === 'credits') p.credits = v.split('\n').map(s=>s.trim()).filter(Boolean);
+      else p[k] = v.trim();
+    });
+    const kind = el.querySelector('[data-herokind]').value, id = el.querySelector('[data-heroid]').value.trim();
+    if (kind === 'vimeo' && id) p.hero = { vimeo: id.replace(/\D/g,'') };
+    else if (kind === 'youtube' && id) p.hero = { youtube: id.replace(/^.*(?:v=|youtu\.be\/)/,'').split(/[?&]/)[0] };
+    else if (kind === 'file') p.hero = { video: `assets/videos/${p.slug}-hero.mp4`, poster: `assets/thumbs/${p.slug}-hero.jpg` };
+  });
+}
+
+async function save() {
+  collect();
+  status('warn', 'Saving…');
+  const r = await fetch('/api/save', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(D) });
+  const j = await r.json();
+  if (!j.ok) { status('bad', 'Save failed', j.error); return false; }
+  setDirty(false); status('ok', 'Saved locally (not yet published)'); return true;
+}
+
+async function publishNow() {
+  if (!(await save())) return;
+  $('#publish').disabled = true; $('#save').disabled = true;
+  status('warn', 'Publishing… GitHub usually takes about a minute.', '');
+  const msg = prompt('Short note for this publish (optional):', 'Text update') ?? 'Text update';
+  const r = await fetch('/api/publish', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ message: msg }) });
+  const j = await r.json();
+  $('#publish').disabled = false; $('#save').disabled = false;
+  if (j.ok) status('ok', j.build === 'nothing to publish' ? 'Nothing changed since the last publish.' : 'Published. Live site build: ' + j.build, j.log);
+  else status('bad', 'Publish problem: ' + (j.build || ''), j.log);
+}
+
+async function uploadTile(slug, file, el) {
+  if (!file) return;
+  status('warn', 'Uploading tile image…');
+  const fd = new FormData(); fd.append('slug', slug); fd.append('file', file, file.name);
+  const r = await fetch('/api/tile', { method:'POST', body: fd }); const j = await r.json();
+  if (!j.ok) { status('bad', 'Image failed', j.log); return; }
+  const p = D.projects.find(x => x.slug === slug); p.thumb = j.thumb;
+  el.querySelector('.thumb').src = '/' + j.thumb + '?t=' + Date.now();
+  setDirty(true); status('ok', 'Tile image replaced (press Save + Publish to put it live)');
+}
+
+$('#save').onclick = save; $('#publish').onclick = publishNow;
+$('#reload').onclick = () => { if (!dirty || confirm('Discard unsaved edits?')) load(); };
+load();
+</script>
+</body>
+</html>
