@@ -412,6 +412,8 @@ const projects = [
     description: [],
     credits: [
       "Client — monday.com",
+      "Director — Ari Kuchar",
+      "Art Director — Noam Locker",
       "Motion & Compositing — Ran Daskal",
     ],
     gallery: [
