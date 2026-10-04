@@ -129,7 +129,8 @@ const projects = [
     ],
     credits: [
       "Client — monday.com",
-      "Motion & Compositing — Ran Daskal",
+      "Art director — Ran Daskal",
+      "Motion designer — Elior Siegelwachs",
     ],
     gallery: [],
   },
