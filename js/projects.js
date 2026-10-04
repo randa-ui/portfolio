@@ -97,8 +97,7 @@ const projects = [
     loop: "assets/videos/abandoned-office-loop.mp4",
     hero: { video: "assets/videos/abandoned-office-hero.mp4", poster: "assets/thumbs/abandoned-office-hero.jpg" },
     description: [
-      "Example description. An empty office, and the objects left behind start doing the work themselves. Live-action plates with hand-animated faces composited onto real props.",
-      "Replace this text with your own, or leave the file empty to hide it.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
@@ -126,7 +125,7 @@ const projects = [
     preview: "",
     hero: { video: "assets/videos/your-crm-is-old-hero.mp4", poster: "assets/thumbs/your-crm-is-old-hero.jpg" },
     description: [
-      "A dialogue piece for monday CRM: two colleagues argue about their outdated CRM until the product steps in to settle it, with the UI animated into the live-action scene.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
@@ -145,7 +144,7 @@ const projects = [
     loop: "assets/videos/wordtune-loop.mp4",
     hero: { vimeo: "790074777" },
     description: [
-      "Product film for Wordtune Spices, told through a needle-felted cat at its desk discovering what AI writing tools can do.",
+      "Video ad",
     ],
     credits: [
       "Client — AI21 Labs",
@@ -163,7 +162,7 @@ const projects = [
     preview: "",
     hero: { video: "assets/videos/truth-bomb-hero.mp4", poster: "assets/thumbs/truth-bomb-hero.jpg" },
     description: [
-      "A presenter delivers hard truths about CRM customisation while kinetic type wraps around the live-action frame.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
@@ -182,7 +181,7 @@ const projects = [
     loop: "assets/videos/fortis-loop.mp4",
     hero: { vimeo: "364596073" },
     description: [
-      "Illustrated opening sequence for Sophia, a Fortis production: ink-drawn insects and figures animated over soft pastel backdrops.",
+      "Lyrics video",
     ],
     credits: [
       "Client — Fortis",
@@ -201,7 +200,7 @@ const projects = [
     loop: "assets/videos/monday-service-loop.mp4",
     hero: { video: "assets/videos/monday-service-hero.mp4", poster: "assets/thumbs/monday-service-hero.jpg" },
     description: [
-      "Explainer for monday Service: tickets, service requests and AI agents, mixing office live action with animated product screens.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
@@ -220,7 +219,7 @@ const projects = [
     loop: "assets/videos/the-biggest-deal-loop.mp4",
     hero: { video: "assets/videos/the-biggest-deal-hero.mp4", poster: "assets/thumbs/the-biggest-deal-hero.jpg" },
     description: [
-      "A sales-team story for monday CRM, following one deal from proposal to Won, with the product UI animated into the office scenes.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
@@ -238,7 +237,7 @@ const projects = [
     preview: "",
     hero: { vimeo: "364597229" },
     description: [
-      "Title sequence for the KAN History documentary on the Menorah, the state emblem of Israel.",
+      "Explainer video",
     ],
     credits: [
       "Client — KAN",
@@ -256,7 +255,7 @@ const projects = [
     preview: "",
     hero: { video: "assets/videos/monday-crm-agents-hero.mp4", poster: "assets/thumbs/monday-crm-agents-hero.jpg" },
     description: [
-      "Launch film introducing AI agents in monday CRM, from sourcing leads to closing deals.",
+      "Product demo",
     ],
     credits: [
       "Client — monday.com",
@@ -274,7 +273,7 @@ const projects = [
     preview: "",
     hero: { vimeo: "364595929" },
     description: [
-      "Opening titles for the KAN History film on S.A.L.T, the Strategic Arms Limitation Talks: archive photography, torn paper and typewriter type.",
+      "Explainer video",
     ],
     credits: [
       "Client — KAN",
@@ -293,7 +292,7 @@ const projects = [
     loop: "assets/videos/crm-nightmare-loop.mp4",
     hero: { video: "assets/videos/crm-nightmare-hero.mp4", poster: "assets/thumbs/crm-nightmare-hero.jpg" },
     description: [
-      "A CRM horror story: one salesperson's nightmares of lost leads and messy pipelines, until monday CRM lets her sleep.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
@@ -311,7 +310,7 @@ const projects = [
     preview: "",
     hero: { video: "assets/videos/life-of-the-dead-hero.mp4", poster: "assets/thumbs/life-of-the-dead-hero.jpg" },
     description: [
-      "Title sequence for the KAN History documentary Life of the Dead, built from archive footage and documents.",
+      "Open titles for a web series",
     ],
     credits: [
       "Client — KAN",
@@ -329,7 +328,7 @@ const projects = [
     preview: "",
     hero: { youtube: "J4jRLn2wfyc" },
     description: [
-      "Product demo for monday CRM showing how AI clears the path to faster deals and better decisions.",
+      "Product demo",
     ],
     credits: [
       "Client — monday.com",
@@ -347,7 +346,7 @@ const projects = [
     preview: "",
     hero: { video: "assets/videos/im-an-actor-hero.mp4", poster: "assets/thumbs/im-an-actor-hero.jpg" },
     description: [
-      "A presenter on a green-screen set walks through the monday.com product, with the animated UI composited around the performance.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
@@ -366,7 +365,7 @@ const projects = [
     loop: "assets/videos/the-worst-about-it-loop.mp4",
     hero: { video: "assets/videos/the-worst-about-it-hero.mp4", poster: "assets/thumbs/the-worst-about-it-hero.jpg" },
     description: [
-      "A testimonial-style spot for monday Service: an IT director on what makes the job hard, and what fixes it.",
+      "Video ad",
     ],
     credits: [
       "Client — monday.com",
