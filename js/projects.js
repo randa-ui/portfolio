@@ -412,6 +412,8 @@ const projects = [
     description: [],
     credits: [
       "Client — monday.com",
+      "Director — Ari Kuchar",
+      "Art Director — Noam Locker",
       "Motion & Compositing — Ran Daskal",
     ],
     gallery: [],
@@ -428,7 +430,9 @@ const projects = [
     description: [],
     credits: [
       "Client — monday.com",
-      "Motion & Compositing — Ran Daskal",
+      "Director: Aviv Divon",
+      "Art director — Ran Daskal",
+      "Producers: Omri Shafran",
     ],
     gallery: [],
   },
