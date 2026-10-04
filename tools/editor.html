@@ -285,7 +285,7 @@ function renderProjects() {
               <label><span class="mono">ID (Vimeo / YouTube)</span><input type="text" data-heroid value="${esc(heroId(p.hero))}" ${heroKind(p.hero)==='file'?'disabled':''}>
                 <div class="hint">For a video file, send the file to Claude; it is encoded and placed for you.</div></label>
             </div>
-            <label><span class="mono">Description <em>· paragraph(s) under the player, right side</em></span><textarea data-k="description">${esc((p.description||[]).join('\n\n'))}</textarea><div class="hint">Blank line between paragraphs. Leave empty to hide.</div></label>
+            <label><span class="mono">Description <em>· first line(s) of the credits list</em></span><textarea data-k="description">${esc((p.description||[]).join('\n\n'))}</textarea><div class="hint">Blank line between paragraphs. Leave empty to hide.</div></label>
             <label><span class="mono">Credits <em>· under the player, left column · one per line, “Role — Name”</em></span><textarea data-k="credits">${esc((p.credits||[]).join('\n'))}</textarea></label>
             ${gal ? `<div class="mono" style="margin-top:14px">Gallery captions <em>· the small text under each process item</em></div><div class="gal">${gal}</div>` : '<div class="hint" style="margin-top:12px">No process gallery yet. Add files to the Dropbox PROCESS folder for this project, then ask Claude to ingest them.</div>'}
           </div>
@@ -305,7 +305,7 @@ function renderInfo() {
     el.innerHTML = `
       <div class="projhead"><span class="mono">${String(i+1).padStart(2,'0')}</span><h2>${esc(p.title)}</h2><span class="mono">${esc(p.client||'')}</span></div>
       <div class="row">
-        <label><span class="mono">Info <em>· paragraph(s) under the video · blank line between paragraphs</em></span><textarea data-info="description" style="min-height:120px">${esc((p.description||[]).join('\n\n'))}</textarea></label>
+        <label><span class="mono">Info <em>· first line(s) of the credits list, same style</em></span><textarea data-info="description" style="min-height:120px">${esc((p.description||[]).join('\n\n'))}</textarea></label>
         <label><span class="mono">Credits <em>· one per line, “Role — Name”</em></span><textarea data-info="credits" style="min-height:120px">${esc((p.credits||[]).join('\n'))}</textarea></label>
       </div>`;
     // keep the two tabs in sync: typing here updates the data, and the Projects tab re-renders from it

@@ -337,18 +337,10 @@ video {
   border: 0;
 }
 
+/* info line(s) + credits as one list under the player */
 .project-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: 32px var(--gap);
-  padding-top: clamp(32px, 4vw, 64px);
-  padding-bottom: clamp(32px, 4vw, 64px);
-}
-
-@media (max-width: 860px) {
-  .project-body {
-    grid-template-columns: 1fr;
-  }
+  padding-top: clamp(28px, 3.5vw, 56px);
+  padding-bottom: clamp(28px, 3.5vw, 56px);
 }
 
 .project-desc p {
@@ -371,6 +363,11 @@ video {
   letter-spacing: 0.03em;
   color: var(--muted);
   line-height: 1.9;
+  max-width: 72ch;
+}
+
+.credits .info {
+  color: var(--ink); /* the info line reads slightly stronger than the credits under it */
 }
 
 .gallery {

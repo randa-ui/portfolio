@@ -232,8 +232,10 @@
 
       ${(p.credits || []).length || (p.description || []).length ? `
       <section class="project-body">
-        <ul class="credits">${(p.credits || []).map((c) => `<li>${c}</li>`).join("")}</ul>
-        <div class="project-desc">${(p.description || []).map((t) => `<p>${t}</p>`).join("")}</div>
+        <ul class="credits">
+          ${(p.description || []).map((t) => `<li class="info">${t}</li>`).join("")}
+          ${(p.credits || []).map((c) => `<li>${c}</li>`).join("")}
+        </ul>
       </section>` : ""}
 
       ${(p.gallery || []).length ? `<section class="gallery">${p.gallery.map(galleryItem).join("")}</section>` : ""}
