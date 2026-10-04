@@ -408,7 +408,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/monday-for-managers.jpg",
     preview: "",
-    hero: {},
+    hero: { video: "assets/videos/monday-for-managers-hero.mp4", poster: "assets/thumbs/monday-for-managers-hero.jpg" },
     description: [],
     credits: [
       "Client — monday.com",
@@ -424,7 +424,7 @@ const projects = [
     year: "",
     thumb: "assets/thumbs/monday-crm-millionaire.jpg",
     preview: "",
-    hero: {},
+    hero: { video: "assets/videos/monday-crm-millionaire-hero.mp4", poster: "assets/thumbs/monday-crm-millionaire-hero.jpg" },
     description: [],
     credits: [
       "Client — monday.com",
