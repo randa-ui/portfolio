@@ -237,7 +237,7 @@ async function load() {
   setDirty(false);
 }
 
-function heroKind(h) { return h.vimeo ? 'vimeo' : h.youtube ? 'youtube' : 'file'; }
+function heroKind(h) { return h.vimeo ? 'vimeo' : h.youtube ? 'youtube' : h.video ? 'file' : 'none'; }
 function heroId(h) { return h.vimeo || h.youtube || ''; }
 function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
 
@@ -281,6 +281,7 @@ function renderProjects() {
                   <option value="vimeo" ${heroKind(p.hero)==='vimeo'?'selected':''}>Vimeo ID</option>
                   <option value="youtube" ${heroKind(p.hero)==='youtube'?'selected':''}>YouTube ID</option>
                   <option value="file" ${heroKind(p.hero)==='file'?'selected':''}>Video file on the site</option>
+                  <option value="none" ${heroKind(p.hero)==='none'?'selected':''}>No video yet</option>
                 </select></label>
               <label><span class="mono">ID (Vimeo / YouTube)</span><input type="text" data-heroid value="${esc(heroId(p.hero))}" ${heroKind(p.hero)==='file'?'disabled':''}>
                 <div class="hint">For a video file, send the file to Claude; it is encoded and placed for you.</div></label>
@@ -292,7 +293,7 @@ function renderProjects() {
         </div>
       </details>`;
     el.querySelectorAll('[data-move]').forEach(b => b.onclick = (e) => { e.preventDefault(); move(i, +b.dataset.move); });
-    el.querySelector('[data-herokind]').onchange = (e) => { el.querySelector('[data-heroid]').disabled = e.target.value === 'file'; };
+    el.querySelector('[data-herokind]').onchange = (e) => { el.querySelector('[data-heroid]').disabled = e.target.value === 'file' || e.target.value === 'none'; };
     el.querySelector('[data-tile]').onchange = (e) => uploadTile(p.slug, e.target.files[0], el);
     root.appendChild(el);
   });
@@ -348,6 +349,7 @@ function collect() {
     if (kind === 'vimeo' && id) p.hero = { vimeo: id.replace(/\D/g,'') };
     else if (kind === 'youtube' && id) p.hero = { youtube: id.replace(/^.*(?:v=|youtu\.be\/)/,'').split(/[?&]/)[0] };
     else if (kind === 'file') p.hero = { video: `assets/videos/${p.slug}-hero.mp4`, poster: `assets/thumbs/${p.slug}-hero.jpg` };
+    else if (kind === 'none') p.hero = {};
   });
 }
 

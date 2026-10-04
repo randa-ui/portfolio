@@ -117,6 +117,8 @@ def write_projects_js(data):
             out.append(f"    hero: {{ vimeo: {js_str(str(hero['vimeo']))} }},")
         elif hero.get("youtube"):
             out.append(f"    hero: {{ youtube: {js_str(str(hero['youtube']))} }},")
+        elif not hero.get("video") and not hero.get("poster"):
+            out.append("    hero: {},")
         else:
             poster = hero.get("poster", f"assets/thumbs/{p['slug']}-hero.jpg")
             video = hero.get("video", f"assets/videos/{p['slug']}-hero.mp4")

@@ -228,7 +228,7 @@
         </dl>
       </header>
 
-      <div class="hero">${heroMarkup(p.hero, p.title)}</div>
+      ${heroMarkup(p.hero, p.title) ? `<div class="hero">${heroMarkup(p.hero, p.title)}</div>` : ""}
 
       ${(p.credits || []).length || (p.description || []).length ? `
       <section class="project-body">
