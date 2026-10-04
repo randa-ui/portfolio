@@ -171,9 +171,9 @@ const projects = [
     ],
     credits: [
       "Client — monday.com",
-      "Director: Aviv Divon",
+      "Director: Omri Shafran",
       "Art director — Ran Daskal",
-      "Producers: Tom Sidi & Omri Shafran",
+      "Producers: Tom Sidi",
       "Designer - Sahar Mor",
       "Motion designer — Ami Gvirtzer",
     ],
@@ -214,7 +214,7 @@ const projects = [
     ],
     credits: [
       "Client — monday.com",
-      "Director & Editor: Omei Shafran",
+      "Director & Editor: Omri Shafran",
       "Art director — Ran Daskal",
       "Producers: Tom Sidi",
       "Motion designer — Ran Daskal",
