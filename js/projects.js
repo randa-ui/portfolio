@@ -151,7 +151,9 @@ const projects = [
     ],
     credits: [
       "Client — AI21 Labs",
-      "Motion Design & Animation — Ran Daskal",
+      "Director: Kobi Vogman",
+      "Script: Amos Meron",
+      "Motion designer — Ran Daskal",
     ],
     gallery: [],
   },
