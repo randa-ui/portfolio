@@ -189,7 +189,10 @@
   function galleryItem(item) {
     const span = item.span === 2 ? "span-2" : "";
     let media = "";
-    if (item.type === "video") {
+    if (item.type === "film") {
+      const poster = item.src.replace(/\.mp4$/, "-poster.jpg");
+      media = `<video src="${asset(item.src)}" poster="${asset(poster)}" controls playsinline preload="metadata"></video>`;
+    } else if (item.type === "video") {
       media = `<video src="${asset(item.src)}" autoplay muted loop playsinline preload="metadata"></video>`;
     } else {
       // gif or image

@@ -412,11 +412,11 @@ const projects = [
     description: [],
     credits: [
       "Client — monday.com",
-      "Director — Ari Kuchar",
-      "Art Director — Noam Locker",
       "Motion & Compositing — Ran Daskal",
     ],
-    gallery: [],
+    gallery: [
+      {"type": "film", "src": "assets/gallery/monday-for-managers/01.mp4", "span": 2, "caption": ""},
+    ],
   },
   {
     slug: "monday-crm-millionaire",

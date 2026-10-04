@@ -29,7 +29,14 @@ ingest_one() {
     local vf_fit="scale=1600:900:force_original_aspect_ratio=decrease:flags=lanczos,pad=1600:900:(ow-iw)/2:(oh-ih)/2:color=0x0f0f0f"
     local vf_plain="scale='min(1600,iw)':-2:flags=lanczos"
     local vf="$vf_plain"; [[ "$(echo "$base" | tr 'A-Z' 'a-z')" == *fit* ]] && vf="$vf_fit"
-    if [[ "$ext" == "mp4" || "$ext" == "mov" || "$ext" == "gif" ]]; then
+    local film=0; [[ "$(echo "$base" | tr 'A-Z' 'a-z')" == *film* ]] && film=1
+    if [[ $film == 1 && ( "$ext" == "mp4" || "$ext" == "mov" ) ]]; then
+      # "film" in the name: a full video with sound and player controls (1080p, like the main video)
+      type=film; dst="$out/$nn.mp4"
+      ffmpeg -nostdin -y -loglevel error -i "$f" -vf "scale=-2:1080:flags=lanczos,fps=30" \
+        -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p -c:a aac -b:a 160k -ac 2 -movflags +faststart "$dst"
+      ffmpeg -nostdin -y -loglevel error -ss 1 -i "$dst" -frames:v 1 -q:v 3 "$out/$nn-poster.jpg"
+    elif [[ "$ext" == "mp4" || "$ext" == "mov" || "$ext" == "gif" ]]; then
       type=video; dst="$out/$nn.mp4"
       ffmpeg -nostdin -y -loglevel error -i "$f" -an -vf "$vf,scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" \
         -c:v libx264 -preset slow -crf 24 -movflags +faststart "$dst"
